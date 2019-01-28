@@ -1,10 +1,7 @@
 #include <SDL.h>
 #include "Level.h"
 #include "Window.h"
-#include "PlayerDisplay.h"
-#include "playerUpdate.h"
-#include "CollectableDisplay.h"
-#include "collectableUpdate.h"
+#include "Player.h"
 #include <iostream>
 
 #if _DEBUG
@@ -44,14 +41,9 @@ int main(int argc, char *argv[])
 {
 	SDL_GLContext glContext; // OpenGL context handle
 	Window* hWindow = new Window (800, 600, "Graded Unit"); // window handle
-	PlayerDisplay* player = new PlayerDisplay();
-	
-	CollectableDisplay* collectable = new CollectableDisplay(player);
-	playerUpdate* update = new playerUpdate(player);
-	LevelDisplay* lDisplay = new LevelDisplay(player, collectable);
-	collectableUpdate* cUpdate = new collectableUpdate(player, collectable, lDisplay);
-	
-	AbstractLevel* level = new Level(player, update, collectable, cUpdate, lDisplay);
+	Player* player = new Player();
+	Collectable* collectable = new Collectable();
+	Level* level = new Level();
 
 	hWindow->setupRC(glContext);
 	SDL_Renderer *renderTarget = nullptr;
@@ -75,13 +67,13 @@ int main(int argc, char *argv[])
 			if (sdlEvent.type == SDL_QUIT)
 				running = false;
 		}
-		level->input(sdlEvent);
-		level->print(hWindow->getWindow()); // call the draw function
+		level->update(sdlEvent);
+		level->display(hWindow->getWindow()); // call the draw function
 	}
 
 
 
-	//SDL_DestroyWindow(hWindow);
+	SDL_DestroyWindow(hWindow->getWindow());
 	SDL_Quit();
 	return 0;
 }

@@ -33,10 +33,10 @@ glm::vec3 platform::getPosition()
 
 void platform::draw(std::stack<glm::mat4> *_mvStack)
 {
-	//platform 1	//turn these into class calls, array of platforms
+	//platform
 	glBindTexture(GL_TEXTURE_2D, texture);
 	_mvStack->push(_mvStack->top());
-	_mvStack->top() = glm::translate(_mvStack->top(), position);	//change to position
+	_mvStack->top() = glm::translate(_mvStack->top(), position);
 	_mvStack->top() = glm::scale(_mvStack->top(), glm::vec3(1.0f, 0.4f, 1.0f));
 	rt3d::setUniformMatrix4fv(myShaderProgram, "modelview", glm::value_ptr(_mvStack->top()));
 	rt3d::setMaterial(myShaderProgram, material);

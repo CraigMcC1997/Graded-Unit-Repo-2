@@ -14,7 +14,7 @@ using namespace std;
 #pragma once
 class AbstractDisplay {
 public:
-	virtual void print(SDL_Window* window) = 0;	//	used for drawing
+	virtual void display(SDL_Window* window) = 0;	//	used for drawing
 	virtual void init() = 0;					//	initialiser
 	GLuint textures[5];							//	array of textures
 	GLuint meshObjects[3];						//	array of objects
@@ -29,8 +29,8 @@ public:
 	glm::vec4 lightPos;
 	SDL_GLContext glContext;
 
-	glm::vec3 collectablePos = glm::vec3(3.0f, 0.5f, 9.800011635f);
 	GLfloat rotationValue = -1.0f;	//	used to rotate the player
+
 
 	rt3d::lightStruct light = {
 	{0.3f, 0.3f, 0.3f, 1.0f}, // ambient
