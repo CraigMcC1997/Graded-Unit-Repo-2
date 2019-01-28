@@ -27,7 +27,7 @@ void Player::init()
 	meshIndexCount = size;
 	meshObjects[1] = rt3d::createMesh(verts.size() / 3, verts.data(), nullptr, norms.data(), tex_coords.data(), size, indices.data());
 
-	//textures[0] = loadTexture::loadTextures("../Resources/fabric.bmp");
+	textures[0] = loadTexture::loadTextures("../Resources/fabric.bmp");
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);

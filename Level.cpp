@@ -37,14 +37,14 @@ void Level::init()
 	player->init();
 	collectable->init();
 
-	////initialising the array of platforms
-	//for (int i = 0; i <= MAX_PLATFORMS; i++)
-	//{
-	//	//platforms
-	//	_platform[i] = new platform(position[i]);
-	//	_platform[i]->init();
-	//	_platform[i]->Set_ShaderID(shaderProgram);
-	//}
+	//initialising the array of platforms
+	for (int i = 0; i <= MAX_PLATFORMS; i++)
+	{
+		//platforms
+		_platform[i] = new platform(position[i]);
+		_platform[i]->init();
+		_platform[i]->Set_ShaderID(shaderProgram);
+	}
 
 	for (int i = 0; i <= MAX_OBJECTS; i++)
 	{
@@ -106,12 +106,12 @@ void Level::display(SDL_Window* window)
 	rt3d::drawIndexedMesh(meshObjects[0], meshIndexCount, GL_TRIANGLES);
 	mvStack.pop();
 
-	////drawing the platforms
-	//for (int i = 0; i <= MAX_PLATFORMS; i++)
-	//	_platform[i]->draw(&mvStack);
-	////texture		//position					//scale							//stack
-	//object[0]->draw(&textures[1], &glm::vec3(5.0f, 0.10f, 10.0f), &glm::vec3(0.01f, 0.01f, 0.01f), &mvStack);
-	//object[1]->draw(&textures[1], &glm::vec3(0.0f, 0.10f, 0.0f), &glm::vec3(0.05f, 0.05f, 0.05f), &mvStack);
+	//drawing the platforms
+	for (int i = 0; i <= MAX_PLATFORMS; i++)
+		_platform[i]->draw(&mvStack);
+	//texture		//position					//scale							//stack
+	object[0]->draw(&textures[1], &glm::vec3(5.0f, 0.10f, 10.0f), &glm::vec3(0.01f, 0.01f, 0.01f), &mvStack);
+	object[1]->draw(&textures[1], &glm::vec3(0.0f, 0.10f, 0.0f), &glm::vec3(0.05f, 0.05f, 0.05f), &mvStack);
 
 	mvStack.pop();	//not sure if needed or not, not changes when removed
 

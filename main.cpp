@@ -40,8 +40,7 @@ void exitFatalError(char *message)
 int main(int argc, char *argv[])
 {
 	SDL_GLContext glContext; // OpenGL context handle
-	Window* hWindow = new Window (800, 600, "Graded Unit"); // window handle
-	Player* player = new Player();
+	Window* hWindow = new Window (800, 600, "Graded Unit Project"); // window handle
 	Collectable* collectable = new Collectable();
 	Level* level = new Level();
 
@@ -70,8 +69,6 @@ int main(int argc, char *argv[])
 		level->update(sdlEvent);
 		level->display(hWindow->getWindow()); // call the draw function
 	}
-
-
 
 	SDL_DestroyWindow(hWindow->getWindow());
 	SDL_Quit();
