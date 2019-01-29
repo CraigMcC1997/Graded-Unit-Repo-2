@@ -2,9 +2,6 @@
 
 using namespace std;
 
-//code below
-HSAMPLE *samples = NULL;	//Used by BASS library
-
 void Player::init()
 {
 	playerPos = glm::vec3(3.0f, 2.0f, -12.0f);	//initialising players starting position
@@ -54,6 +51,7 @@ void Player::update(SDL_Event _event)
 		if (allowJumpSound)
 		{
 			Sound::playSample(samples[0]);
+			cout << "sound played" << endl;
 			allowJumpSound = false;
 		}
 	}
@@ -61,7 +59,6 @@ void Player::update(SDL_Event _event)
 		allowJumpSound = true;
 
 	if (keys[SDL_SCANCODE_SPACE]) {
-		cout << "JUMPING" << endl;
 		doJump = true;
 	}
 	else
@@ -72,13 +69,9 @@ void Player::update(SDL_Event _event)
 		}
 
 	if (doJump)
+	{
 		playerPos.y += move::jump();
-
-	if (keys[SDL_SCANCODE_R]) {
-		cout << "R" << endl;
-	}
-	if (keys[SDL_SCANCODE_F]) {
-		cout << "F" << endl;
+		cout << "JUMPING" << endl;
 	}
 
 	if (playerPos.y <= 0.0f)

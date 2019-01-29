@@ -6,7 +6,9 @@ class Collectable : public AbstractDisplay
 {
 private:
 	glm::vec3 collectablePos;
+
 public:
+	Collectable() {}
 	void init();
 	void update(SDL_Event _event);
 	void display(SDL_Window* window);

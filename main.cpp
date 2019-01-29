@@ -41,7 +41,6 @@ int main(int argc, char *argv[])
 {
 	SDL_GLContext glContext; // OpenGL context handle
 	Window* hWindow = new Window (800, 600, "Graded Unit Project"); // window handle
-	Collectable* collectable = new Collectable();
 	Level* level = new Level();
 
 	hWindow->setupRC(glContext);

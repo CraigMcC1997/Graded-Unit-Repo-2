@@ -10,7 +10,9 @@ class Player : public AbstractDisplay
 {
 private:
 	glm::vec3 playerPos;	//player position
-	bool done = false, allowJumpSound = true, doJump = false;	//	booleans for sound code
+	bool done = false, allowJumpSound = true, doJump = false;
+	//code below
+	HSAMPLE *samples = NULL;	//Used by BASS library
 
 public:
 	Player() {}

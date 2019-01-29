@@ -109,6 +109,7 @@ void Level::display(SDL_Window* window)
 	//drawing the platforms
 	for (int i = 0; i <= MAX_PLATFORMS; i++)
 		_platform[i]->draw(&mvStack);
+	
 	//texture		//position					//scale							//stack
 	object[0]->draw(&textures[1], &glm::vec3(5.0f, 0.10f, 10.0f), &glm::vec3(0.01f, 0.01f, 0.01f), &mvStack);
 	object[1]->draw(&textures[1], &glm::vec3(0.0f, 0.10f, 0.0f), &glm::vec3(0.05f, 0.05f, 0.05f), &mvStack);
