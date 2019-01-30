@@ -38,7 +38,7 @@ void Level::init()
 	collectable->init();
 
 	//initialising the array of platforms
-	for (int i = 0; i <= MAX_PLATFORMS; i++)
+	for (int i = 0; i < MAX_PLATFORMS; i++)
 	{
 		//platforms
 		_platform[i] = new platform(position[i]);
@@ -46,7 +46,7 @@ void Level::init()
 		_platform[i]->Set_ShaderID(shaderProgram);
 	}
 
-	for (int i = 0; i <= MAX_OBJECTS; i++)
+	for (int i = 0; i < MAX_OBJECTS; i++)
 	{
 		//Objects
 		object[i] = new drawObject();
@@ -107,7 +107,7 @@ void Level::display(SDL_Window* window)
 	mvStack.pop();
 
 	//drawing the platforms
-	for (int i = 0; i <= MAX_PLATFORMS; i++)
+	for (int i = 0; i < MAX_PLATFORMS; i++)
 		_platform[i]->draw(&mvStack);
 	
 	//texture		//position					//scale							//stack
