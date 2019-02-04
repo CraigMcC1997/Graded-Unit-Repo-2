@@ -1,6 +1,7 @@
 #ifndef SOUND
 #define SOUND
-
+#ifndef NOMINMAX
+#define NOMINMAX
 #include <Windows.h>
 #include <mmsystem.h>
 #include "bass.h"
@@ -12,4 +13,5 @@ namespace Sound {
 	HSAMPLE loadSample(const char * filename);	//	load sound files
 	void playSample(HSAMPLE sample);
 };
+#endif
 #endif
