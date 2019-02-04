@@ -4,6 +4,7 @@
 #include "Player.h"
 #include <iostream>
 #include "Mesh.h"
+#include "Model.h"
 #include <SOIL2/SOIL2.h>
 
 

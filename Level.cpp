@@ -7,6 +7,11 @@ void Level::init()
 	rt3d::setLight(shaderProgram, light);
 	rt3d::setMaterial(shaderProgram, material);
 
+	shader = new Shader("../Shaders/modelLoading.vert", "../Shaders/modelLoading.frag");
+	myModel = new Model("../Resources/models/nanosuit.obj");
+
+	shader->Use();
+
 	//initialising positions
 	lightPos = glm::vec4(-10.0f, 10.0f, 10.0f, 1.0f);
 	position[0] = glm::vec3(3.0f, 4.0f, -8.0f);
@@ -77,6 +82,19 @@ void Level::display(SDL_Window* window)
 	mvStack.top() = glm::lookAt(eye, at, up); //pushing camera to top of stack
 
 	glUseProgram(shaderProgram);	//setting up shader for use
+
+	glm::mat4 view = camera.GetViewMatrix();
+	glUniformMatrix4fv(glGetUniformLocation(shader->Program, "projection"),
+		1, GL_FALSE, glm::value_ptr(projection));
+	glUniformMatrix4fv(glGetUniformLocation(shader->Program, "view"),
+		1, GL_FALSE, glm::value_ptr(view));
+
+	glm::mat4x4 model;
+	model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
+	model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));
+	glUniformMatrix4fv(glGetUniformLocation(shader->Program, "model"),
+		1, GL_FALSE, glm::value_ptr(model));
+	myModel->Draw(*shader);
 
 	//global light
 	glm::vec4 tmp = mvStack.top()*lightPos;

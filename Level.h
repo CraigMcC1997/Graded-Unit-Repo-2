@@ -6,11 +6,17 @@
 #include "DrawObject.h"
 #include "Platform.h"
 
+#include "Mesh.h"
+#include "Model.h"
+#include <SOIL2/SOIL2.h>
+
 class Level : public AbstractDisplay
 {
 private:
 	Player* player = new Player();
 	Collectable* collectable = new Collectable();
+	Shader* shader;
+	Model* myModel;
 
 	static const GLuint MAX_PLATFORMS = 4;	//	number of platforms
 	static const GLuint MAX_OBJECTS = 2;
