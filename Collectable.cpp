@@ -4,7 +4,7 @@ void Collectable::init()
 {
 	collectablePos = glm::vec3(4.0f, 0.0f, -18.0f);
 
-	shaderProgram = rt3d::initShaders("../Shaders/phong.vert", "../Shaders/phong.frag");
+	shaderProgram = rt3d::initShaders("../Resources/Shaders/phong.vert", "../Resources/Shaders/phong.frag");
 	rt3d::setLight(shaderProgram, light);
 	rt3d::setMaterial(shaderProgram, material);
 

@@ -5,10 +5,8 @@
 #include "Collectable.h"
 #include "DrawObject.h"
 #include "Platform.h"
-
-#include "Mesh.h"
 #include "Model.h"
-#include <SOIL2/SOIL2.h>
+#include "Camera.h"
 
 class Level : public AbstractDisplay
 {
@@ -17,6 +15,7 @@ private:
 	Collectable* collectable = new Collectable();
 	Shader* shader;
 	Model* myModel;
+	Camera* camera;
 
 	static const GLuint MAX_PLATFORMS = 4;	//	number of platforms
 	static const GLuint MAX_OBJECTS = 2;

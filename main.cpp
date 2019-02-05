@@ -1,12 +1,7 @@
 #include <SDL.h>
 #include "Level.h"
 #include "Window.h"
-#include "Player.h"
 #include <iostream>
-#include "Mesh.h"
-#include "Model.h"
-#include <SOIL2/SOIL2.h>
-
 
 #if _DEBUG
 #pragma comment(linker, "/subsystem:\"console\" /entry:\"WinMainCRTStartup\"")

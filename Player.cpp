@@ -11,9 +11,9 @@ void Player::init()
 		cout << "Can't initialize device";
 
 	samples = new HSAMPLE[5];	//array of sound  files
-	samples[0] = Sound::loadSample("../SoundFiles/jump.wav");	//adding sound files to the array to be played later in code
+	samples[0] = Sound::loadSample("../Resources/SoundFiles/jump.wav");	//adding sound files to the array to be played later in code
 
-	shaderProgram = rt3d::initShaders("../Shaders/phong.vert", "../Shaders/phong.frag");
+	shaderProgram = rt3d::initShaders("../Resources/Shaders/phong.vert", "../Resources/Shaders/phong.frag");
 	rt3d::setLight(shaderProgram, light);
 	rt3d::setMaterial(shaderProgram, material);
 
