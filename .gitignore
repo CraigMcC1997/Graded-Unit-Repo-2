@@ -1,0 +1,11 @@
+.vs
+*.exe
+*.dll
+*.lib
+*.obj
+*.pch
+*.pdb
+*.sdf
+*.suo
+Debug
+Release
