@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Abstractions">
+      <UniqueIdentifier>{dfba1149-518c-4aea-b677-16d75c702f42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Abstractions\Display">
+      <UniqueIdentifier>{67fb4298-bf2f-4d3b-a8a3-20bf4fec4b8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Abstractions\Level">
+      <UniqueIdentifier>{27909787-7f69-4bc0-acb5-c16d57fda6be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Abstractions\Window">
+      <UniqueIdentifier>{10b28f39-7c8c-4422-bdbc-7bad4b3451f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Level">
+      <UniqueIdentifier>{e74b266c-052c-4799-b746-0f266ca28192}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Window">
+      <UniqueIdentifier>{87c71014-631d-499d-ae7f-d1ce8dccec6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Abstractions\Update">
+      <UniqueIdentifier>{a81fbb43-620f-4e4f-8e14-76e50fc45452}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RT3D">
+      <UniqueIdentifier>{e8e46b16-3298-4130-88ab-f3c77f315a56}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rt3d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rt3dObjLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="loadTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaySound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Collectable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Move.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractDisplay.h">
+      <Filter>Header Files\Abstractions\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractLevel.h">
+      <Filter>Header Files\Abstractions\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractWindow.h">
+      <Filter>Header Files\Abstractions\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Header Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="rt3dObjLoader.h">
+      <Filter>Header Files\RT3D</Filter>
+    </ClInclude>
+    <ClInclude Include="rt3d.h">
+      <Filter>Header Files\RT3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Header Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractUpdate.h">
+      <Filter>Header Files\Abstractions\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="loadTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaySound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Collectable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Shaders\phong.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Shaders\phong.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Shaders\modelLoading.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Shaders\modelLoading.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>
