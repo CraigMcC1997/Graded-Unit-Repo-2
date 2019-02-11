@@ -24,7 +24,7 @@ void Player::init()
 	meshIndexCount = size;
 	meshObjects[1] = rt3d::createMesh(verts.size() / 3, verts.data(), nullptr, norms.data(), tex_coords.data(), size, indices.data());
 
-	textures[0] = loadTexture::loadTextures("../Resources/fabric.bmp");
+	texture[0] = loadTexture::loadTextures("../Resources/fabric.bmp");
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
@@ -78,7 +78,7 @@ void Player::update(SDL_Event _event)
 		playerPos.y = 0.0f;
 }
 
-void Player::display(SDL_Window* window)
+void Player::draw(SDL_Window* window)
 {
 	glm::mat4 projection(1.0); // creating the projection matrix
 	projection = glm::perspective(float(glm::radians(60.0f)), 800.0f / 600.0f, 1.0f, 150.0f); //setting up perspective
@@ -100,7 +100,7 @@ void Player::display(SDL_Window* window)
 	rt3d::setUniformMatrix4fv(shaderProgram, "projection", glm::value_ptr(projection));
 
 	// drawing player model
-	glBindTexture(GL_TEXTURE_2D, textures[0]);
+	glBindTexture(GL_TEXTURE_2D, texture[0]);
 	mvStack.push(mvStack.top());
 	mvStack.top() = glm::translate(mvStack.top(), glm::vec3(playerPos.x, playerPos.y, playerPos.z));
 	mvStack.top() = glm::scale(mvStack.top(), glm::vec3(scale*0.5f, scale*0.5f, scale*0.5f));

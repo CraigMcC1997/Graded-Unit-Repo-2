@@ -5,28 +5,24 @@
 #include "loadTexture.h"
 #include "rt3d.h"
 #include "rt3dObjLoader.h"
+#include "drawableEntity.h"
 
 using namespace std;
 
-class platform {
+class platform : DrawableEntity
+{
 private:
 	glm::vec3 position;
-	GLuint myShaderProgram;
-	GLuint meshObject;
+	glm::vec3 scale;
 	GLuint texture;
-	GLuint size;
-	GLuint meshIndexCount = 0;
-	stack<glm::mat4> mvStack;
-	vector<GLfloat> verts;
-	vector<GLfloat> norms;
-	vector<GLfloat> tex_coords;
-	vector<GLuint> indices;
-	rt3d::materialStruct material;
+	std::stack<glm::mat4> *_mvStack;
 
 public:
-	platform(glm::vec3 position) : position(position) {};
-	glm::vec3 getPosition();
-	void draw(std::stack<glm::mat4> *_mvStack);
+	platform(glm::vec3 position, glm::vec3 scale, GLuint texture) : position(position), scale(scale), texture(texture) {};
+	
+	void draw(SDL_Window* window);
+	void update(SDL_Event _event);
 	void init(void);
 	void Set_ShaderID(GLuint _id);
+	void getStack(std::stack<glm::mat4>* stack);
 };

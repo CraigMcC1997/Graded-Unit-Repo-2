@@ -26,7 +26,7 @@ private:
 
 public:
 	drawObject() {};
-	void init(const char* name);
+	void init(const char* fileName);
 	void draw(GLuint *texture, glm::vec3 *position, glm::vec3 *scale, std::stack<glm::mat4> *_mvStack);
 	void Set_ShaderID(GLuint _id);
 };

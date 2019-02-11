@@ -1,25 +1,24 @@
 #pragma once
 #include <glm/glm.hpp>
-#include "AbstractDisplay.h"
 #include "loadTexture.h"
 #include "Move.h"
 #include "PlaySound.h"
-#include "AbstractDisplay.h"
+#include "drawableEntity.h"
 
-class Player : public AbstractDisplay
+class Player : public DrawableEntity
 {
 private:
 	glm::vec3 playerPos;	//player position
 	bool done = false, allowJumpSound = true, doJump = false;
-	//code below
 	HSAMPLE *samples = NULL;	//Used by BASS library
+	GLfloat rotationValue;
 
 public:
 	Player() {}
 	void init();
-	void update(SDL_Event _event);
-	void display(SDL_Window* window);
-
 	glm::vec3 getPlayerPos();
 	void setPlayerPos(glm::vec3 pos);
+
+	void update(SDL_Event _event);
+	void draw(SDL_Window* window);
 };

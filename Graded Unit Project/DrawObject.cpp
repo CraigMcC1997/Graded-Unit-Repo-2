@@ -1,8 +1,8 @@
 #include "DrawObject.h"
 
-void drawObject::init(const char* name)
+void drawObject::init(const char* fileName)
 {
-	rt3d::loadObj(name, verts, norms, tex_coords, indices);
+	rt3d::loadObj(fileName, verts, norms, tex_coords, indices);
 	size = indices.size();
 	meshIndexCount = size;
 	meshObject = rt3d::createMesh(verts.size() / 3, verts.data(), nullptr, norms.data(), tex_coords.data(), size, indices.data());

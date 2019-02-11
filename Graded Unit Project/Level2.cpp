@@ -1,17 +1,12 @@
-#include "Level.h"
+#include "Level2.h"
 
-void Level::init()
+void Level2::init()
 {
-	camera = new Camera(glm::vec3(0.0f, 0.0f, -3.0f));
-
 	//initialising shaders
 	shaderProgram = rt3d::initShaders("../Resources/Shaders/phong.vert", "../Resources/Shaders/phong.frag");
 	rt3d::setLight(shaderProgram, light);
 	rt3d::setMaterial(shaderProgram, material);
 
-	//shader = new Shader("../Resources/Shaders/modelLoading.vert", "../Resources/Shaders/modelLoading.frag");
-	//myModel = new Model("../Resources/cube.obj");
-	//shader->Use();	//use the shader 
 
 	//initialising positions
 	lightPos = glm::vec4(-10.0f, 10.0f, 10.0f, 1.0f);
@@ -19,13 +14,6 @@ void Level::init()
 	position[1] = glm::vec3(3.0f, 6.0f, -3.0f);
 	position[2] = glm::vec3(3.0f, 6.0f, 0.0f);
 	position[3] = glm::vec3(3.0f, 8.0f, 5.0f);
-	position[4] = glm::vec3(0.0f, -0.1f, 0.0f);
-
-	scale[0] = glm::vec3(1.0f, 0.4f, 1.0f);
-	scale[1] = glm::vec3(1.0f, 0.4f, 1.0f);
-	scale[2] = glm::vec3(1.0f, 0.4f, 1.0f);
-	scale[3] = glm::vec3(1.0f, 0.4f, 1.0f);
-	scale[4] = glm::vec3(15.0f, 0.1f, 30.0f);
 
 	//initialising an object
 	verts.clear(); norms.clear(); tex_coords.clear(); indices.clear();
@@ -36,10 +24,10 @@ void Level::init()
 	//loading textures
 	texture[0] = loadTexture::loadTextures("../Resources/fabric.bmp");
 	texture[1] = loadTexture::loadTextures("../Resources/moss.png");
-	
+	texture[2] = loadTexture::loadTextures("../Resources/Jungle1.png");
 
-	name[0] = "../Resources/palmTree.obj";
-	name[1] = "../Resources/CrashBush.obj";
+	sceneObjectName[0] = "../Resources/palmTree.obj";
+	sceneObjectName[1] = "../Resources/CrashBush.obj";
 
 	//initialising gl functions
 	glEnable(GL_DEPTH_TEST);
@@ -49,37 +37,32 @@ void Level::init()
 	//initialising player class
 	player->init();
 	collectable->init();
-	
-	background->init();
-	background->Set_ShaderID(shaderProgram);
-	background->getStack(&mvStack);
 
-	//initialising the array of platforms
-	for (int i = 0; i < MAX_PLATFORMS; i++)
-	{
-		//platforms
-		_platform[i] = new platform(position[i], scale[i], texture[0]);
-		_platform[i]->init();
-		_platform[i]->Set_ShaderID(shaderProgram);
-		_platform[i]->getStack(&mvStack);
-	}
+	////initialising the array of platforms
+	//for (int i = 0; i < MAX_PLATFORMS; i++)
+	//{
+	//	//platforms
+	//	_platform[i] = new platform(position[i]);
+	//	_platform[i]->init();
+	//	_platform[i]->Set_ShaderID(shaderProgram);
+	//}
 
-	for (int i = 0; i < MAX_OBJECTS; i++)
-	{
-		//Objects
-		object[i] = new drawObject();
-		object[i]->init(name[i]);
-		object[i]->Set_ShaderID(shaderProgram);
-	}
+//	for (int i = 0; i < MAX_OBJECTS; i++)
+//	{
+//		//Objects
+//		object[i] = new drawObject();
+//		object[i]->init(sceneObjectName[i]);
+//		object[i]->Set_ShaderID(shaderProgram);
+//	}
 }
 
-void Level::update(SDL_Event _event)
+void Level2::update(SDL_Event _event)
 {
 	player->update(_event);
 	collectable->update(_event);
 }
 
-void Level::display(SDL_Window* window)
+void Level2::display(SDL_Window* window)
 {
 	// clear the screen
 	glEnable(GL_CULL_FACE);
@@ -97,20 +80,6 @@ void Level::display(SDL_Window* window)
 	at = move::moveForward(eye, move::getRotation(), 1.0f);
 	mvStack.top() = glm::lookAt(eye, at, up); //pushing camera to top of stack
 
-	////assimp stuf
-	//glm::mat4 view = camera->GetViewMatrix();
-	//glUniformMatrix4fv(glGetUniformLocation(shader->Program, "projection"),
-	//	1, GL_FALSE, glm::value_ptr(projection));
-	//glUniformMatrix4fv(glGetUniformLocation(shader->Program, "view"),
-	//	1, GL_FALSE, glm::value_ptr(view));
-
-	//glm::mat4x4 model;
-	//model = glm::translate(model, glm::vec3(player->getPlayerPos().x, player->getPlayerPos().y, player->getPlayerPos().z));
-	//model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	//glUniformMatrix4fv(glGetUniformLocation(shader->Program, "model"),
-	//	1, GL_FALSE, glm::value_ptr(model));
-	//myModel->Draw(*shader);
-
 	glUseProgram(shaderProgram);	//setting up shader for use
 
 	//global light
@@ -121,16 +90,33 @@ void Level::display(SDL_Window* window)
 	rt3d::setLightPos(shaderProgram, glm::value_ptr(tmp));
 	rt3d::setUniformMatrix4fv(shaderProgram, "projection", glm::value_ptr(projection));
 
-	//back wall 1
-	background->draw(window);
+	//ground plane
+	glBindTexture(GL_TEXTURE_2D, texture[1]);
+	mvStack.push(mvStack.top());
+	mvStack.top() = glm::translate(mvStack.top(), glm::vec3(platformPos.x, platformPos.y, platformPos.z));
+	mvStack.top() = glm::scale(mvStack.top(), glm::vec3(15.0f, 0.1f, 30.0f));
+	rt3d::setUniformMatrix4fv(shaderProgram, "modelview", glm::value_ptr(mvStack.top()));
+	rt3d::setMaterial(shaderProgram, material);
+	rt3d::drawIndexedMesh(meshObjects[0], meshIndexCount, GL_TRIANGLES);
+	mvStack.pop();
 
-	//drawing the platforms
-	for (int i = 0; i < MAX_PLATFORMS; i++)
-		_platform[i]->draw(window);
+	//back wall 1
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	mvStack.push(mvStack.top());
+	mvStack.top() = glm::translate(mvStack.top(), glm::vec3(10.0f, 8.0f, 0.0f));
+	mvStack.top() = glm::scale(mvStack.top(), glm::vec3(0.5f, 20.0f, 35.0f));
+	rt3d::setUniformMatrix4fv(shaderProgram, "modelview", glm::value_ptr(mvStack.top()));
+	rt3d::setMaterial(shaderProgram, material);
+	rt3d::drawIndexedMesh(meshObjects[0], meshIndexCount, GL_TRIANGLES);
+	mvStack.pop();
+
+	////drawing the platforms
+	//for (int i = 0; i < MAX_PLATFORMS; i++)
+	//	_platform[i]->draw(&mvStack);
 	
 	//texture		//position					//scale							//stack
-	object[0]->draw(&texture[1], &glm::vec3(5.0f, 0.10f, 10.0f), &glm::vec3(0.01f, 0.01f, 0.01f), &mvStack);
-	object[1]->draw(&texture[1], &glm::vec3(0.0f, 0.10f, 0.0f), &glm::vec3(0.05f, 0.05f, 0.05f), &mvStack);
+	/*object[0]->draw(&textures[1], &glm::vec3(5.0f, 0.10f, 10.0f), &glm::vec3(0.01f, 0.01f, 0.01f), &mvStack);
+	object[1]->draw(&textures[1], &glm::vec3(0.0f, 0.10f, 0.0f), &glm::vec3(0.05f, 0.05f, 0.05f), &mvStack);*/
 
 	mvStack.pop();	//not sure if needed or not, not changes when removed
 

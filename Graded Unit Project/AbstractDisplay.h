@@ -16,10 +16,9 @@ class AbstractDisplay {
 public:
 	virtual void display(SDL_Window* window) = 0;	//	used for drawing
 	virtual void init() = 0;					//	initialiser
-	GLuint textures[5];							//	array of textures
+
 	GLuint meshObjects[3];						//	array of objects
 	GLuint shaderProgram;						//	Phong Shader
-	GLuint size;
 	GLuint meshIndexCount = 0;
 	stack<glm::mat4> mvStack;
 	vector<GLfloat> verts;
@@ -27,9 +26,6 @@ public:
 	vector<GLfloat> tex_coords;
 	vector<GLuint> indices;
 	glm::vec4 lightPos;
-	SDL_GLContext glContext;
-
-	GLfloat rotationValue = -1.0f;	//	used to rotate the player
 
 
 	rt3d::lightStruct light = {

@@ -1,15 +1,16 @@
 #pragma once
-#include "AbstractDisplay.h"
 #include "loadTexture.h"
+#include "drawableEntity.h"
 
-class Collectable : public AbstractDisplay
+class Collectable : public DrawableEntity
 {
 private:
 	glm::vec3 collectablePos;
+	GLfloat rotationValue = - 1.0f;
 
 public:
 	Collectable() {}
 	void init();
 	void update(SDL_Event _event);
-	void display(SDL_Window* window);
+	void draw(SDL_Window* window);
 };
