@@ -4,6 +4,8 @@
 #include "Move.h"
 #include "PlaySound.h"
 #include "drawableEntity.h"
+#include "Model.h"
+#include "Camera.h"
 
 class Player : public DrawableEntity
 {
@@ -12,6 +14,9 @@ private:
 	bool done = false, allowJumpSound = true, doJump = false;
 	HSAMPLE *samples = NULL;	//Used by BASS library
 	GLfloat rotationValue;
+	Shader* shader;
+	Model* myModel;
+	Camera* camera;
 
 public:
 	Player() {}
