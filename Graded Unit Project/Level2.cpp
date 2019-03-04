@@ -36,7 +36,7 @@ void Level2::init()
 
 	//initialising player class
 	player->init();
-	collectable->init();
+	//collectable->init();
 
 	////initialising the array of platforms
 	//for (int i = 0; i < MAX_PLATFORMS; i++)
@@ -59,7 +59,7 @@ void Level2::init()
 void Level2::update(SDL_Event _event)
 {
 	player->update(_event);
-	collectable->update(_event);
+	//collectable->update(_event);
 }
 
 void Level2::display(SDL_Window* window)
@@ -120,6 +120,6 @@ void Level2::display(SDL_Window* window)
 
 	mvStack.pop();	//not sure if needed or not, not changes when removed
 
-	collectable->draw(window);	//	drawing collectable
+	//collectable->draw(window);	//	drawing collectable
 	player->draw(window);	//	drawing player
 }

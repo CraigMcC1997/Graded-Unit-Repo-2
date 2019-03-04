@@ -10,7 +10,7 @@ class Level2 : public AbstractDisplay
 {
 private:
 	Player* player = new Player();
-	Collectable* collectable = new Collectable();
+	//Collectable* collectable = new Collectable();
 
 	static const GLuint MAX_PLATFORMS = 4;	//	number of platforms
 	static const GLuint MAX_OBJECTS = 2;

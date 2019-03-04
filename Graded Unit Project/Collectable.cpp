@@ -29,7 +29,7 @@ void Collectable::init()
 void Collectable::update(SDL_Event _event)
 {
 
-		// !!! NOT IN USE !!!
+	// !!! NOT IN USE !!!
 
 	//if (pDisplay->playerPos.x == cDisplay->collectablePos.x)
 	//{
@@ -40,7 +40,7 @@ void Collectable::update(SDL_Event _event)
 	//	}
 	//}
 
-		// !!! NOT IN USE !!!
+	// !!! NOT IN USE !!!
 }
 
 void Collectable::draw(SDL_Window* window)
@@ -66,7 +66,7 @@ void Collectable::draw(SDL_Window* window)
 	// drawing object
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 	mvStack.push(mvStack.top());
-	mvStack.top() = glm::translate(mvStack.top(), glm::vec3(collectablePos.x, collectablePos.y, collectablePos.z));
+	mvStack.top() = glm::translate(mvStack.top(), collectablePos);
 	mvStack.top() = glm::scale(mvStack.top(), glm::vec3(scale*0.5f, scale*0.5f, scale*0.5f));
 	mvStack.top() = glm::rotate(mvStack.top(), rotationValue, glm::vec3(0.0f, 1.0f, 0.0f));
 	rt3d::setUniformMatrix4fv(shaderProgram, "modelview", glm::value_ptr(mvStack.top()));

@@ -6,7 +6,7 @@ class Collectable : public DrawableEntity
 {
 private:
 	glm::vec3 collectablePos;
-	GLfloat rotationValue = - 1.0f;
+	GLfloat rotationValue = -1.0f;
 
 public:
 	Collectable() {}

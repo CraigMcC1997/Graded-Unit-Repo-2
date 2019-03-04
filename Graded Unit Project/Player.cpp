@@ -15,9 +15,6 @@ void Player::init()
 	samples[0] = Sound::loadSample("../Resources/SoundFiles/jump.wav");	//adding sound files to the array to be played later in code
 
 	shader = new Shader("../Resources/Shaders/phong.vert", "../Resources/Shaders/phong.frag");
-
-	lightPos = glm::vec4(-10.0f, 10.0f, 10.0f, 1.0f);	//initialising world light position
-
 	myModel = new Model("../Resources/MODEL.obj");	//loading player model
 	shader->Use();
 
@@ -95,8 +92,7 @@ void Player::draw(SDL_Window* window)
 		1, GL_FALSE, glm::value_ptr(model));
 	myModel->Draw(*shader);
 
-	//// remember to use at least one pop operation per push...
-	//mvStack.pop(); // initial matrix
+	// remember to use at least one pop operation per push...
 	glDepthMask(GL_TRUE);
 	SDL_GL_SwapWindow(window); // swap buffers
 }
