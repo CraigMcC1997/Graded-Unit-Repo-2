@@ -1,10 +1,10 @@
-#include <GL/glew.h>
+#include "GL/glew.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <vector>
 #include <stack>
-#include <SDL_image.h>
+#include "SDL2/SDL_image.h"
 #include "rt3d.h"
 #include "rt3dObjLoader.h"
 #include "Window.h"

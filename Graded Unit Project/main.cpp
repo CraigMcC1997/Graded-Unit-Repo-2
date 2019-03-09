@@ -1,12 +1,8 @@
-#include <SDL.h>
+#include "SDL2/SDL.h" 
 #include "Level.h"
 //#include "level2.h"
 #include "Window.h"
 #include <iostream>
-
-#if _DEBUG
-#pragma comment(linker, "/subsystem:\"console\" /entry:\"WinMainCRTStartup\"")
-#endif
 
 using namespace std;
 

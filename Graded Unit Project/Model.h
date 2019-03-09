@@ -7,13 +7,13 @@
 #include <map>
 #include <vector>
 
-#include <GL/glew.h>
+#include "GL/glew.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <SOIL2/SOIL2.h>
-#include <assimp/Importer.hpp>
-#include <assimp/scene.h>
-#include <assimp/postprocess.h>
+#include "SOIL2/SOIL2.h"
+#include "assimp/Importer.hpp"
+#include "assimp/scene.h"
+#include "assimp/postprocess.h"
 
 #include "Mesh.h"
 

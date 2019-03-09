@@ -16,6 +16,7 @@ void Player::init()
 
 	shader = new Shader("../Resources/Shaders/phong.vert", "../Resources/Shaders/phong.frag");
 	myModel = new Model("../Resources/MODEL.obj");	//loading player model
+	//myModel = new Model("../Resources/models/nanosuit.obj");	//loading player model
 	shader->Use();
 
 	texture[0] = loadTexture::loadTextures("../Resources/fabric.bmp");
@@ -30,9 +31,9 @@ void Player::update(SDL_Event _event)
 	playerPos = move::grav(playerPos);
 
 	const Uint8 *keys = SDL_GetKeyboardState(NULL);
-	if (keys[SDL_SCANCODE_W]) {
+	if (keys[SDL_SCANCODE_W]){
 		playerPos = move::moveRight(playerPos, move::getRotation(), 0.10f);
-		rotationValue = 0.0f;
+		rotationValue = -180.0f;
 	}
 
 	if (keys[SDL_SCANCODE_S]) {

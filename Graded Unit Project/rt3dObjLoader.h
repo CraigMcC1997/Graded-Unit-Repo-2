@@ -12,7 +12,7 @@
 #ifndef RT3D_OBJ_LOADER
 #define RT3D_OBJ_LOADER
 
-#include <GL/glew.h>
+#include "GL/glew.h"
 #include <vector>
 
 namespace rt3d {
