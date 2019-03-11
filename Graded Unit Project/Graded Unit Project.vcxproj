@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{B72160C5-02DE-4673-8B8F-F54F9B5F75E6}</ProjectGuid>
     <RootNamespace>GradedUnitProject</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.10240.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Dev\SDL2_ttf-2.0.14;..\Dev\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/Dev/SOIL2/include;$(SolutionDir)/Dev/assimp/include;..\Dev\SDL2_ttf-2.0.14;..\Dev\SDL2-2.0.8\include;..\Dev\glew-2.0.0\bin\Release\Win32;..\Dev\glm;..\Dev\SDL2_image-2.0.3;..\Dev\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <Version>
@@ -135,8 +135,6 @@
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlaySound.cpp" />
-    <ClCompile Include="rt3d.cpp" />
-    <ClCompile Include="rt3dObjLoader.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -160,8 +158,6 @@
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlaySound.h" />
-    <ClInclude Include="rt3d.h" />
-    <ClInclude Include="rt3dObjLoader.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>

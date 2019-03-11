@@ -4,17 +4,11 @@ void Level::init()
 {
 	camera = new Camera(glm::vec3(0.0f, 0.0f, -3.0f));
 
-	//initialising shaders
-	shaderProgram = rt3d::initShaders("../Resources/Shaders/phong.vert", "../Resources/Shaders/phong.frag");
-	rt3d::setLight(shaderProgram, light);
-	rt3d::setMaterial(shaderProgram, material);
-
 	shader = new Shader("../Resources/Shaders/modelLoading.vert", "../Resources/Shaders/modelLoading.frag");
 	myModel = new Model("../Resources/cube.obj");
 	shader->Use();	//use the shader 
 
 	//initialising positions
-	lightPos = glm::vec4(-10.0f, 10.0f, 10.0f, 1.0f);
 	position[0] = glm::vec3(3.0f, 4.0f, -8.0f);
 	position[1] = glm::vec3(3.0f, 6.0f, -3.0f);
 	position[2] = glm::vec3(3.0f, 6.0f, 0.0f);
@@ -27,12 +21,6 @@ void Level::init()
 	scale[3] = glm::vec3(1.0f, 0.4f, 1.0f);
 	scale[4] = glm::vec3(15.0f, 0.1f, 30.0f);
 
-	//initialising an object
-	verts.clear(); norms.clear(); tex_coords.clear(); indices.clear();
-	rt3d::loadObj("../Resources/cube.obj", verts, norms, tex_coords, indices);
-	meshIndexCount = indices.size();
-	meshObjects[0] = rt3d::createMesh(verts.size() / 3, verts.data(), nullptr, norms.data(), tex_coords.data(), meshIndexCount, indices.data());
-
 	//loading textures
 	texture[0] = loadTexture::loadTextures("../Resources/fabric.bmp");
 	texture[1] = loadTexture::loadTextures("../Resources/moss.png");
@@ -41,18 +29,13 @@ void Level::init()
 	name[0] = "../Resources/palmTree.obj";
 	name[1] = "../Resources/CrashBush.obj";
 
-	//initialising gl functions
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
 	//initialising player class
 	player->init();
 	collectable->init();
 	
 	background->init();
-	background->Set_ShaderID(shaderProgram);
-	background->getStack(&mvStack);
+	//background->Set_ShaderID(shaderProgram);
+	//background->getStack(&mvStack);
 
 	//initialising the array of platforms
 	for (int i = 0; i < MAX_PLATFORMS; i++)
@@ -60,8 +43,8 @@ void Level::init()
 		//platforms
 		_platform[i] = new platform(position[i], scale[i], texture[0]);
 		_platform[i]->init();
-		_platform[i]->Set_ShaderID(shaderProgram);
-		_platform[i]->getStack(&mvStack);
+		//_platform[i]->Set_ShaderID(shaderProgram);
+		//_platform[i]->getStack(&mvStack);
 	}
 
 	for (int i = 0; i < MAX_OBJECTS; i++)
@@ -69,8 +52,13 @@ void Level::init()
 		//Objects
 		object[i] = new drawObject();
 		object[i]->init(name[i]);
-		object[i]->Set_ShaderID(shaderProgram);
+		//object[i]->Set_ShaderID(shaderProgram);
 	}
+
+	//initialising gl functions
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 void Level::update(SDL_Event _event)
@@ -88,14 +76,7 @@ void Level::display(SDL_Window* window)
 	
 	glm::mat4 projection(1.0); // creating the projection matrix
 	projection = glm::perspective(float(glm::radians(60.0f)), 800.0f / 600.0f, 1.0f, 150.0f); //setting up perspective
-	rt3d::setUniformMatrix4fv(shaderProgram, "projection", glm::value_ptr(projection));
-	
-	GLfloat scale(1.0f); //used for scaling models & objects
-	glm::mat4 modelview(1.0); // set base position for scene //creating the modelview matrix
-	
-	mvStack.push(modelview); // first push
-	at = move::moveForward(eye, move::getRotation(), 1.0f);
-	mvStack.top() = glm::lookAt(eye, at, up); //pushing camera to top of stack
+	//rt3d::setUniformMatrix4fv(shaderProgram, "projection", glm::value_ptr(projection));
 
 	//assimp stuf
 	glm::mat4 view = camera->GetViewMatrix();
@@ -110,16 +91,9 @@ void Level::display(SDL_Window* window)
 	glUniformMatrix4fv(glGetUniformLocation(shader->Program, "model"),
 		1, GL_FALSE, glm::value_ptr(model));
 	myModel->Draw(*shader);
-
-	glUseProgram(shaderProgram);	//setting up shader for use
-
-	//global light
-	glm::vec4 tmp = mvStack.top()*lightPos;
-	light.position[0] = tmp.x;
-	light.position[1] = tmp.y;
-	light.position[2] = tmp.z;
-	rt3d::setLightPos(shaderProgram, glm::value_ptr(tmp));
-	rt3d::setUniformMatrix4fv(shaderProgram, "projection", glm::value_ptr(projection));
+	
+	GLfloat scale(1.0f); //used for scaling models & objects
+	glm::mat4 modelview(1.0); // set base position for scene //creating the modelview matrix
 
 	//back wall 1
 	background->draw(window);
@@ -129,10 +103,8 @@ void Level::display(SDL_Window* window)
 		_platform[i]->draw(window);
 	
 	//texture		//position					//scale							//stack
-	object[0]->draw(&texture[1], &glm::vec3(5.0f, 0.10f, 10.0f), &glm::vec3(0.01f, 0.01f, 0.01f), &mvStack);
-	object[1]->draw(&texture[1], &glm::vec3(0.0f, 0.10f, 0.0f), &glm::vec3(0.05f, 0.05f, 0.05f), &mvStack);
-
-	mvStack.pop();	//not sure if needed or not, not changes when removed
+	object[0]->draw(&texture[1], &glm::vec3(5.0f, 0.10f, 10.0f), &glm::vec3(0.01f, 0.01f, 0.01f));
+	object[1]->draw(&texture[1], &glm::vec3(0.0f, 0.10f, 0.0f), &glm::vec3(0.05f, 0.05f, 0.05f));
 
 	collectable->draw(window);	//	drawing collectable
 	player->draw(window);	//	drawing player

@@ -1,4 +1,4 @@
-#include "SDL2/SDL.h" 
+#include <SDL.h> 
 #include "Level.h"
 //#include "level2.h"
 #include "Window.h"

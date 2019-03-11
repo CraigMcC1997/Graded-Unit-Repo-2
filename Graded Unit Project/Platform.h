@@ -3,9 +3,10 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <stack>
 #include "loadTexture.h"
-#include "rt3d.h"
-#include "rt3dObjLoader.h"
 #include "drawableEntity.h"
+
+#include "Model.h"
+#include "Camera.h"
 
 using namespace std;
 
@@ -15,7 +16,10 @@ private:
 	glm::vec3 position;
 	glm::vec3 scale;
 	GLuint texture;
-	std::stack<glm::mat4> *_mvStack;
+
+	Shader* shader;
+	Model* myModel;
+	Camera* camera;
 
 public:
 	platform(glm::vec3 position, glm::vec3 scale, GLuint texture) : position(position), scale(scale), texture(texture) {};
@@ -23,6 +27,6 @@ public:
 	void draw(SDL_Window* window);
 	void update(SDL_Event _event);
 	void init(void);
-	void Set_ShaderID(GLuint _id);
-	void getStack(std::stack<glm::mat4>* stack);
+	//void Set_ShaderID(GLuint _id);
+	//void getStack(std::stack<glm::mat4>* stack);
 };

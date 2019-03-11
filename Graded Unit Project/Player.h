@@ -18,6 +18,8 @@ private:
 	Model* myModel;
 	Camera* camera;
 
+	glm::mat4x4 model;
+
 public:
 	Player() {}
 	void init();

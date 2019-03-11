@@ -1,6 +1,8 @@
 #pragma once
 #include "drawableEntity.h"
 #include "loadTexture.h"
+#include "Model.h"
+#include "Camera.h"
 
 class Background : public DrawableEntity {
 private:
@@ -8,11 +10,15 @@ private:
 	GLuint texture;
 	std::stack<glm::mat4> *_mvStack;
 
+	Shader* shader;
+	Model* myModel;
+	Camera* camera;
+
 public:
 	Background() {}
 	void init();
 	void update(SDL_Event _event);
 	void draw(SDL_Window* window);
-	void Set_ShaderID(GLuint _id);
-	void getStack(std::stack<glm::mat4>* stack);
+	//void Set_ShaderID(GLuint _id);
+	//void getStack(std::stack<glm::mat4>* stack);
 };
