@@ -3,16 +3,14 @@
 #include "drawableEntity.h"
 #include "Model.h"
 #include "Camera.h"
+#include "rt3d.h"
+#include "rt3dObjLoader.h"
 
 class Collectable : public DrawableEntity
 {
 private:
 	glm::vec3 collectablePos;
 	GLfloat rotationValue = -1.0f;
-
-	Shader* shader;
-	Model* myModel;
-	Camera* camera;
 
 public:
 	Collectable() {}

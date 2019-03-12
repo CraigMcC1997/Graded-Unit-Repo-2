@@ -9,6 +9,14 @@ protected:
 	GLuint shaderProgram;						//	Phong Shader
 	GLuint size;
 	GLuint texture[5];
+	GLuint meshObjects[3];
+	GLuint meshIndexCount = 0;
+	stack<glm::mat4> mvStack;
+	vector<GLfloat> verts;
+	vector<GLfloat> norms;
+	vector<GLfloat> tex_coords;
+	vector<GLuint> indices;
+	glm::vec4 lightPos;
 
 
 public:

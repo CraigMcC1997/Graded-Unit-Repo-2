@@ -1,6 +1,5 @@
 #pragma once
 #include "AbstractLevel.h"
-#include "Window.h"
 #include "Player.h"
 #include "Collectable.h"
 #include "DrawObject.h"

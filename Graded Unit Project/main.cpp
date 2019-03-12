@@ -1,6 +1,5 @@
 #include <SDL.h> 
 #include "Level.h"
-//#include "level2.h"
 #include "Window.h"
 #include <iostream>
 
@@ -39,7 +38,6 @@ int main(int argc, char *argv[])
 	Window* hWindow = new Window (800, 600, "Graded Unit Project"); // window handle
 	
 	Level* level = new Level();
-	//Level2* level2 = new Level2();
 
 	hWindow->setupRC(glContext);
 	SDL_Renderer *renderTarget = nullptr;
@@ -54,7 +52,6 @@ int main(int argc, char *argv[])
 	cout << glGetString(GL_VERSION) << endl;
 	
 	level->init();
-	//level2->init();
 
 	SDL_Event sdlEvent;	// variable to detect SDL events
 	bool running = true;
@@ -66,9 +63,6 @@ int main(int argc, char *argv[])
 		}
 		level->update(sdlEvent);
 		level->display(hWindow->getWindow()); // call the draw function
-
-		/*level2->update(sdlEvent);
-		level2->display(hWindow->getWindow());*/
 	}
 
 	SDL_DestroyWindow(hWindow->getWindow());

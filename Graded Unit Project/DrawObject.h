@@ -3,11 +3,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "loadTexture.h"
+#include "rt3d.h"
+#include "rt3dObjLoader.h"
 #include <stack>
 #include <vector>
-
-#include "Model.h"
-#include "Camera.h"
 
 using namespace std;
 
@@ -18,14 +17,16 @@ private:
 	GLuint meshObject;
 	GLuint size;
 	GLuint meshIndexCount = 0;
-
-	Shader* shader;
-	Model* myModel;
-	Camera* camera;
+	stack<glm::mat4> mvStack;
+	vector<GLfloat> verts;
+	vector<GLfloat> norms;
+	vector<GLfloat> tex_coords;
+	vector<GLuint> indices;
+	rt3d::materialStruct material;
 
 public:
 	drawObject() {};
 	void init(const char* fileName);
-	void draw(GLuint *texture, glm::vec3 *position, glm::vec3 *scale);
-	//void Set_ShaderID(GLuint _id);
+	void draw(GLuint *texture, glm::vec3 *position, glm::vec3 *scale, std::stack<glm::mat4> *_mvStack);
+	void Set_ShaderID(GLuint _id);
 };

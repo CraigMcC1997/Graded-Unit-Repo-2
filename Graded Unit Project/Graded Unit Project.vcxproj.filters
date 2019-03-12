@@ -78,6 +78,12 @@
     <ClCompile Include="Background.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="rt3d.cpp">
+      <Filter>Header Files\RT3D</Filter>
+    </ClCompile>
+    <ClCompile Include="rt3dObjLoader.cpp">
+      <Filter>Header Files\RT3D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Move.h">
@@ -145,6 +151,12 @@
     </ClInclude>
     <ClInclude Include="Background.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rt3d.h">
+      <Filter>Header Files\RT3D</Filter>
+    </ClInclude>
+    <ClInclude Include="rt3dObjLoader.h">
+      <Filter>Header Files\RT3D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
