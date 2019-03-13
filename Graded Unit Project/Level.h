@@ -5,8 +5,6 @@
 #include "DrawObject.h"
 #include "Platform.h"
 #include "Background.h"
-#include "Model.h"
-#include "Camera.h"
 
 class Level : public AbstractDisplay
 {
@@ -14,9 +12,6 @@ private:
 	Player* player = new Player();
 	Collectable* collectable = new Collectable();
 	Background* background = new Background();
-	Shader* shader;
-	Model* myModel;
-	Camera* camera;
 
 	static const GLuint MAX_PLATFORMS = 5;	//	number of platforms
 	static const GLuint MAX_OBJECTS = 2;

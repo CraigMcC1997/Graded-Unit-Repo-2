@@ -5,7 +5,7 @@
 #include <Windows.h>
 #include <mmsystem.h>
 #include "bass.h"
-#include "GL/glew.h"
+#include <GL/glew.h>
 
 namespace Sound {
 		//array of sound  files
