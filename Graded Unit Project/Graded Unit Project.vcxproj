@@ -128,7 +128,6 @@
     <ClCompile Include="drawableEntity.cpp" />
     <ClCompile Include="DrawObject.cpp" />
     <ClCompile Include="Level.cpp" />
-    <ClCompile Include="Level2.cpp" />
     <ClCompile Include="loadTexture.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Move.cpp" />
@@ -151,7 +150,6 @@
     <ClInclude Include="DrawObject.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Level.h" />
-    <ClInclude Include="Level2.h" />
     <ClInclude Include="loadTexture.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="Platform.h" />
@@ -159,6 +157,7 @@
     <ClInclude Include="PlaySound.h" />
     <ClInclude Include="rt3d.h" />
     <ClInclude Include="rt3dObjLoader.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>

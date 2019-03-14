@@ -9,14 +9,11 @@
 #include <stack>
 #include "rt3d.h"
 #include "rt3dObjLoader.h"
+#include "Camera.h"
 
 class Entity
 {
 protected:
-	//camera code
-	glm::vec3 eye = glm::vec3(-15.0f, 2.0f, 0.0f);
-	glm::vec3 at = glm::vec3(0.0f, 1.0f, -1.0f);
-	glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
 
 	rt3d::lightStruct light = {
 	{0.3f, 0.3f, 0.3f, 1.0f}, // ambient

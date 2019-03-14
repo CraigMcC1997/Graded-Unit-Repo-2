@@ -4,8 +4,6 @@ using namespace std;
 
 void Player::init()
 {
-	playerPos = glm::vec3(1.0f, 1.0f, -12.0f);	//initialising players starting position
-
 	shaderProgram = rt3d::initShaders("../Resources/Shaders/phong.vert", "../Resources/Shaders/phong.frag");
 	rt3d::setLight(shaderProgram, light);
 	rt3d::setMaterial(shaderProgram, material);
@@ -14,7 +12,6 @@ void Player::init()
 	size = indices.size();
 	meshIndexCount = size;
 	meshObjects[1] = rt3d::createMesh(verts.size() / 3, verts.data(), nullptr, norms.data(), tex_coords.data(), size, indices.data());
-
 
 	samples = new HSAMPLE[5];	//array of sound  files
 	samples[0] = Sound::loadSample("../Resources/SoundFiles/jump.wav");	//adding sound files to the array to be played later in code
@@ -32,13 +29,19 @@ void Player::update(SDL_Event _event)
 
 	const Uint8 *keys = SDL_GetKeyboardState(NULL);
 	if (keys[SDL_SCANCODE_W]){
-		playerPos = move::moveRight(playerPos, move::getRotation(), 0.10f);
+		playerPos = move::moveForward(playerPos, move::getRotation(), 0.10f);
 		rotationValue = -180.0f;
+
+		cout << "x: " << playerPos.x << endl;
+		cout << "z: " << playerPos.z << endl;
 	}
 
 	if (keys[SDL_SCANCODE_S]) {
-		playerPos = move::moveRight(playerPos, move::getRotation(), -0.10f);
+		playerPos = move::moveForward(playerPos, move::getRotation(), -0.10f);
 		rotationValue = 180.0f;
+
+		cout << "x: " << playerPos.x << endl;
+		cout << "z: " << playerPos.z << endl;
 	}
 
 	if (keys[SDL_SCANCODE_X])
@@ -79,7 +82,6 @@ void Player::draw(SDL_Window* window)
 	GLfloat scale(1.0f); //used for scaling models & objects
 	glm::mat4 modelview(1.0); // set base position for scene //creating the modelview matrix
 	mvStack.push(modelview); // first push
-	mvStack.top() = glm::lookAt(eye, at, up); //pushing camera to top of stack
 
 	glUseProgram(shaderProgram);
 

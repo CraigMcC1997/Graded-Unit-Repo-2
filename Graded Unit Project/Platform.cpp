@@ -2,10 +2,6 @@
 
 void platform::init(void)
 {
-	//camera = new Camera(glm::vec3(0.0f, 0.0f, -3.0f));
-	//shader = new Shader("../Resources/Shaders/phong.vert", "../Resources/Shaders/phong.frag");
-	//myModel = new Model("../Resources/cube.obj");
-
 	rt3d::loadObj("../Resources/cube.obj", verts, norms, tex_coords, indices);
 	size = indices.size();
 	meshIndexCount = size;

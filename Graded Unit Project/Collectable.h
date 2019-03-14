@@ -1,8 +1,6 @@
 #pragma once
 #include "loadTexture.h"
 #include "drawableEntity.h"
-#include "Model.h"
-#include "Camera.h"
 #include "rt3d.h"
 #include "rt3dObjLoader.h"
 

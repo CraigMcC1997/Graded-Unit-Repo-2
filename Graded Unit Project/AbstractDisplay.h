@@ -40,9 +40,4 @@ public:
 		{0.8f, 0.8f, 0.8f, 1.0f}, // specular
 		1.0f  // shininess
 	};
-
-	//camera code
-	glm::vec3 eye = glm::vec3(-15.0f, 2.0f, 0.0f);
-	glm::vec3 at = glm::vec3(0.0f, 1.0f, -1.0f);
-	glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
 };

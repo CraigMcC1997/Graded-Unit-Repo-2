@@ -8,7 +8,7 @@
 class Player : public DrawableEntity
 {
 private:
-	glm::vec3 playerPos;
+	glm::vec3 playerPos = glm::vec3(1.0f, 1.0f, -20.0f);
 	bool done = false, allowJumpSound = true, doJump = false;
 	HSAMPLE *samples = NULL;	//Used by BASS library
 	GLfloat rotationValue;

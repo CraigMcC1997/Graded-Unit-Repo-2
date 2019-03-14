@@ -71,6 +71,18 @@ void Level::update(SDL_Event _event)
 {
 	player->update(_event);
 	collectable->update(_event);
+
+	//testing camera movements
+	if (player->getPlayerPos().x >= 10.0f)
+	{
+		GLfloat PlayerX = player->getPlayerPos().x;
+		GLfloat eyeY = camera.getEye().y;
+		GLfloat eyeZ = camera.getEye().x;
+
+		glm::vec3 camPos = glm::vec3(PlayerX, eyeY, eyeZ);
+
+		camera.setEye(camPos);
+	}
 }
 
 void Level::display(SDL_Window* window)
@@ -85,8 +97,8 @@ void Level::display(SDL_Window* window)
 	GLfloat scale(1.0f); //used for scaling models & objects
 	glm::mat4 modelview(1.0); // set base position for scene //creating the modelview matrix
 	mvStack.push(modelview); // first push
-	at = move::moveForward(eye, move::getRotation(), 1.0f);
-	mvStack.top() = glm::lookAt(eye, at, up); //pushing camera to top of stack
+	camera.setAt(move::moveForward(camera.getEye(), move::getRotation(), 1.0f));
+	mvStack.top() = camera.GetViewMatrix(); //pushing camera to top of stack
 
 	glUseProgram(shaderProgram);	//setting up shader for use
 

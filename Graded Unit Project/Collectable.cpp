@@ -2,7 +2,7 @@
 
 void Collectable::init()
 {
-	collectablePos = glm::vec3(1.0f, 1.0f, 5.0f);
+	collectablePos = glm::vec3(6.0f, 1.0f, -20.0f);
 
 	shaderProgram = rt3d::initShaders("../Resources/Shaders/phong.vert", "../Resources/Shaders/phong.frag");
 	rt3d::setLight(shaderProgram, light);
@@ -22,7 +22,6 @@ void Collectable::init()
 
 void Collectable::update(SDL_Event _event)
 {
-
 	// !!! NOT IN USE !!!
 
 	//if (pDisplay->playerPos.x == cDisplay->collectablePos.x)
@@ -42,7 +41,6 @@ void Collectable::draw(SDL_Window* window)
 	GLfloat scale(1.0f); //used for scaling models & objects
 	glm::mat4 modelview(1.0); // set base position for scene //creating the modelview matrix
 	mvStack.push(modelview); // first push
-	mvStack.top() = glm::lookAt(eye, at, up); //pushing camera to top of stack
 
 	glUseProgram(shaderProgram);
 

@@ -12,6 +12,7 @@ private:
 	Player* player = new Player();
 	Collectable* collectable = new Collectable();
 	Background* background = new Background();
+	Camera camera = Camera();
 
 	static const GLuint MAX_PLATFORMS = 5;	//	number of platforms
 	static const GLuint MAX_OBJECTS = 2;
