@@ -4,20 +4,20 @@ using namespace std;
 
 void Player::init()
 {
-	camera = new Camera(glm::vec3(0.0f, 0.0f, -3.0f));
-	playerPos = glm::vec3(3.0f, 4.0f, -12.0f);	//initialising players starting position
+	playerPos = glm::vec3(1.0f, 1.0f, -12.0f);	//initialising players starting position
 
-	//Initialize default output device
-	if (!BASS_Init(-1, 44100, 0, 0, NULL))
-		cout << "Can't initialize device";
+	shaderProgram = rt3d::initShaders("../Resources/Shaders/phong.vert", "../Resources/Shaders/phong.frag");
+	rt3d::setLight(shaderProgram, light);
+	rt3d::setMaterial(shaderProgram, material);
+
+	rt3d::loadObj("../Resources/MODEL.obj", verts, norms, tex_coords, indices);
+	size = indices.size();
+	meshIndexCount = size;
+	meshObjects[1] = rt3d::createMesh(verts.size() / 3, verts.data(), nullptr, norms.data(), tex_coords.data(), size, indices.data());
+
 
 	samples = new HSAMPLE[5];	//array of sound  files
 	samples[0] = Sound::loadSample("../Resources/SoundFiles/jump.wav");	//adding sound files to the array to be played later in code
-
-	shader = new Shader("../Resources/Shaders/phong.vert", "../Resources/Shaders/phong.frag");
-	myModel = new Model("../Resources/MODEL.obj");	//loading player model
-	//myModel = new Model("../Resources/models/nanosuit.obj");	//loading player model
-	shader->Use();
 
 	texture[0] = loadTexture::loadTextures("../Resources/fabric.bmp");
 
@@ -28,11 +28,11 @@ void Player::init()
 
 void Player::update(SDL_Event _event)
 {
-	//playerPos = move::grav(playerPos);
+	playerPos = move::grav(playerPos);
 
 	const Uint8 *keys = SDL_GetKeyboardState(NULL);
 	if (keys[SDL_SCANCODE_W]){
-		playerPos = move::moveForward(playerPos, move::getRotation(), 0.10f);
+		playerPos = move::moveRight(playerPos, move::getRotation(), 0.10f);
 		rotationValue = -180.0f;
 	}
 
@@ -69,29 +69,30 @@ void Player::update(SDL_Event _event)
 		cout << "JUMPING" << endl;
 	}
 
+	//REMOVE THIS WHEN COLLISION WORKS
 	if (playerPos.y <= 0.0f)
 		playerPos.y = 0.0f;
 }
 
 void Player::draw(SDL_Window* window)
 {
-	glm::mat4 projection(1.0); // creating the projection matrix
-	projection = glm::perspective(float(glm::radians(60.0f)), 800.0f / 600.0f, 1.0f, 150.0f); //setting up perspective
-	//rt3d::setUniformMatrix4fv(shaderProgram, "projection", glm::value_ptr(projection));
+	GLfloat scale(1.0f); //used for scaling models & objects
+	glm::mat4 modelview(1.0); // set base position for scene //creating the modelview matrix
+	mvStack.push(modelview); // first push
+	mvStack.top() = glm::lookAt(eye, at, up); //pushing camera to top of stack
 
-	//assimp stuf
-	glm::mat4 view = camera->GetViewMatrix();
-	glUniformMatrix4fv(glGetUniformLocation(shader->Program, "projection"),
-		1, GL_FALSE, glm::value_ptr(projection));
-	glUniformMatrix4fv(glGetUniformLocation(shader->Program, "view"),
-		1, GL_FALSE, glm::value_ptr(view));
+	glUseProgram(shaderProgram);
 
-
-	model = glm::translate(model, glm::vec3(getPlayerPos()));
-	model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	glUniformMatrix4fv(glGetUniformLocation(shader->Program, "model"),
-		1, GL_FALSE, glm::value_ptr(model));
-	myModel->Draw(*shader);
+	//drawing object
+	glBindTexture(GL_TEXTURE_2D, texture[0]);
+	mvStack.push(mvStack.top());
+	mvStack.top() = glm::translate(mvStack.top(), playerPos);
+	mvStack.top() = glm::scale(mvStack.top(), glm::vec3(scale*0.5f, scale*0.5f, scale*0.5f));
+	mvStack.top() = glm::rotate(mvStack.top(), rotationValue, glm::vec3(0.0f, 1.0f, 0.0f));
+	rt3d::setUniformMatrix4fv(shaderProgram, "modelview", glm::value_ptr(mvStack.top()));
+	rt3d::setMaterial(shaderProgram, material);
+	rt3d::drawIndexedMesh(meshObjects[1], meshIndexCount, GL_TRIANGLES);
+	mvStack.pop();
 
 	// remember to use at least one pop operation per push...
 	glDepthMask(GL_TRUE);

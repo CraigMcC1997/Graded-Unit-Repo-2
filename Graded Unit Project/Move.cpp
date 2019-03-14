@@ -11,7 +11,7 @@ namespace move {
 
 	// moving forwards & backwards
 	glm::vec3 moveForward(glm::vec3 pos, GLfloat angle, GLfloat d) {
-		return glm::vec3(pos.x + d * std::sin(glm::radians(r)), pos.y, pos.z - d * std::cos(glm::radians(r)));
+		return glm::vec3(pos.x + d /** std::sin(glm::radians(r))*/, pos.y, pos.z /*- d * std::cos(glm::radians(r))*/);
 	}
 
 	// moving right & left

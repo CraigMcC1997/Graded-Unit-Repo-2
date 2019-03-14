@@ -6,6 +6,11 @@ using namespace std;
 //Loads the sound files
 HSAMPLE Sound::loadSample(const char* filename)
 {
+
+	//Initialize default output device
+	if (!BASS_Init(-1, 44100, 0, 0, NULL))
+		cout << "Can't initialize device";
+
 	HSAMPLE sam;
 	if (sam = BASS_SampleLoad(FALSE, filename, 0, 0, 3, BASS_SAMPLE_OVER_POS))
 		cout << "sample " << filename << " loaded!" << endl;

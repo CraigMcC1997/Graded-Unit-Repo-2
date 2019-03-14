@@ -20,6 +20,7 @@ protected:
 
 
 public:
+	virtual void init() = 0;
 	virtual void update(SDL_Event _event) = 0;
 	virtual void draw(SDL_Window* window) = 0;
 };

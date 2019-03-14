@@ -5,6 +5,23 @@
 
 using namespace std;
 
+Level* level = new Level();
+
+void init()
+{
+	level->init();
+}
+
+void update(SDL_Event event)
+{
+	level->update(event);
+}
+
+void draw(SDL_Window* window)
+{
+	level->display(window);
+}
+
 bool handleSDLEvent(SDL_Event const &sdlEvent)
 {
 	if (sdlEvent.type == SDL_QUIT)
@@ -36,8 +53,6 @@ int main(int argc, char *argv[])
 {
 	SDL_GLContext glContext; // OpenGL context handle
 	Window* hWindow = new Window (800, 600, "Graded Unit Project"); // window handle
-	
-	Level* level = new Level();
 
 	hWindow->setupRC(glContext);
 	SDL_Renderer *renderTarget = nullptr;
@@ -51,7 +66,7 @@ int main(int argc, char *argv[])
 	}
 	cout << glGetString(GL_VERSION) << endl;
 	
-	level->init();
+	init();
 
 	SDL_Event sdlEvent;	// variable to detect SDL events
 	bool running = true;
@@ -61,8 +76,8 @@ int main(int argc, char *argv[])
 			if (sdlEvent.type == SDL_QUIT)
 				running = false;
 		}
-		level->update(sdlEvent);
-		level->display(hWindow->getWindow()); // call the draw function
+		update(sdlEvent);
+		draw(hWindow->getWindow());
 	}
 
 	SDL_DestroyWindow(hWindow->getWindow());

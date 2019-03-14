@@ -2,10 +2,6 @@
 
 void Background::init()
 {
-	//camera = new Camera(glm::vec3(0.0f, 0.0f, -3.0f));
-	//shader = new Shader("../Resources/Shaders/phong.vert", "../Resources/Shaders/phong.frag");
-	//myModel = new Model("../Resources/cube.obj");
-
 	rt3d::loadObj("../Resources/cube.obj", verts, norms, tex_coords, indices);
 	size = indices.size();
 	meshIndexCount = size;
@@ -35,25 +31,6 @@ void Background::update(SDL_Event _event)
 
 void Background::draw(SDL_Window* window)
 {
-	glm::mat4 projection(1.0); // creating the projection matrix
-	projection = glm::perspective(float(glm::radians(60.0f)), 800.0f / 600.0f, 1.0f, 150.0f); //setting up perspective
-
-	//shader->Use();
-
-	////assimp stuf
-	//glm::mat4 view = camera->GetViewMatrix();
-	//glUniformMatrix4fv(glGetUniformLocation(shader->Program, "projection"),
-	//	1, GL_FALSE, glm::value_ptr(projection));
-	//glUniformMatrix4fv(glGetUniformLocation(shader->Program, "view"),
-	//	1, GL_FALSE, glm::value_ptr(view));
-
-	//glm::mat4x4 model;
-	//model = glm::translate(model, glm::vec3(10.0f, 8.0f, 0.0f));
-	//model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-	//glUniformMatrix4fv(glGetUniformLocation(shader->Program, "model"),
-	//	1, GL_FALSE, glm::value_ptr(model));
-	//myModel->Draw(*shader);
-
 	glBindTexture(GL_TEXTURE_2D, texture);
 	_mvStack->push(_mvStack->top());
 	_mvStack->top() = glm::translate(_mvStack->top(), glm::vec3(10.0f, 8.0f, 0.0f));

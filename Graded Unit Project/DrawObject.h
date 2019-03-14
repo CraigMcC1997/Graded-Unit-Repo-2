@@ -10,8 +10,7 @@
 
 using namespace std;
 
-class drawObject 
-{
+class drawObject {
 private:
 	GLuint myShaderProgram;
 	GLuint meshObject;

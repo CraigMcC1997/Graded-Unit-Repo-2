@@ -2,10 +2,6 @@
 
 void drawObject::init(const char* fileName)
 {
-	//camera = new Camera(glm::vec3(0.0f, 0.0f, -3.0f));
-	//shader = new Shader("../Resources/Shaders/phong.vert", "../Resources/Shaders/phong.frag");
-	//myModel = new Model(fileName);
-
 	rt3d::loadObj(fileName, verts, norms, tex_coords, indices);
 	size = indices.size();
 	meshIndexCount = size;

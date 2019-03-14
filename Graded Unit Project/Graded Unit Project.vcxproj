@@ -146,7 +146,6 @@
     <ClInclude Include="AbstractWindow.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="bass.h" />
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="Collectable.h" />
     <ClInclude Include="drawableEntity.h" />
     <ClInclude Include="DrawObject.h" />
@@ -154,15 +153,12 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="Level2.h" />
     <ClInclude Include="loadTexture.h" />
-    <ClInclude Include="Mesh.h" />
-    <ClInclude Include="Model.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlaySound.h" />
     <ClInclude Include="rt3d.h" />
     <ClInclude Include="rt3dObjLoader.h" />
-    <ClInclude Include="Shader.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>

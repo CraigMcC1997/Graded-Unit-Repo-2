@@ -8,10 +8,6 @@ private:
 	GLuint texture;
 	std::stack<glm::mat4> *_mvStack;
 
-	//Shader* shader;
-	//Model* myModel;
-	//Camera* camera;
-
 public:
 	Background() {}
 	void init();
