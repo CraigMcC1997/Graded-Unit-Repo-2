@@ -13,12 +13,15 @@
 class Level_4 : public AbstractLevel
 {
 protected:
-	Player* player;
-	Platform* platform[6];
-	Collectable* collectable[6];
-	Basic_Enemy* enemy[3];
-	EndPoint* endPoint;
 	enum { MAX_PLATFORMS = 6 };
+	enum { MAX_COLLECTABLES = 6 };
+	enum { MAX_ENEMIES = 3 };
+
+	Player* player;
+	Platform* platform[MAX_PLATFORMS];
+	Collectable* collectable[MAX_COLLECTABLES];
+	Basic_Enemy* enemy[MAX_ENEMIES];
+	EndPoint* endPoint;
 	Bush* bush = new Bush();
 	Tree* tree = new Tree();
 public:

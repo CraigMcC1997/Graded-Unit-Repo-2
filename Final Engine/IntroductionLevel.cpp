@@ -91,19 +91,19 @@ void IntroductionLevel::update(AbstractLevel ** level)
 		{
 			if (player->getPosition().y >= platform[i]->getPosition().y)
 			{
-				player->noPlatformCollision = false;
+				player->setPlatformCollision(false);
 				player->setJump(false);
 				Move::resetV();
 
 				glm::vec3 position = player->getPosition();
 				position.y = platform[i]->getPosition().y + 1.3f;
 
-				if (!player->jumping)
+				if (!player->getJumping())
 					player->setPlayerPosition(position);
 			}
 		}
 		else
-			player->noPlatformCollision = true;
+			player->setPlatformCollision(true);
 			
 	}
 
@@ -122,19 +122,19 @@ void IntroductionLevel::update(AbstractLevel ** level)
 	{
 		if (player->getAllowDamage())
 		{
-			player->noEnemyCollision = false;
+			player->setEnemyCollision(false);
 			player->setAllowDamage(false);
 			player->takeDamage();
 		}
 	}
 	else
-		player->noEnemyCollision = true;
+		player->setEnemyCollision(true);
 
 	if (Collision::collisionDetection(player, projectile_Enemy->getProjectile()))
 	{
 		if (player->getAllowDamage())
 		{
-			player->noProjectileCollision = false;
+			player->setProjectileCollision(false);
 			player->setAllowDamage(false);
 			player->takeDamage();
 		}

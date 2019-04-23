@@ -20,24 +20,24 @@ void Level_2::init()
 		enemy[i]->init();
 	}
 	endPoint->init();
-	endPoint->setPosition(glm::vec3(-6.0f, 3.0f, 90.0f));
+	endPoint->setPosition(glm::vec3(-3.0f, 3.0f, 90.0f));
 
-	platform[0]->setPosition(glm::vec3(-6.0f, 2.0f, 15.0f));
-	platform[1]->setPosition(glm::vec3(-6.0f, 4.0f, 20.0f));
-	platform[2]->setPosition(glm::vec3(-6.0f, 6.0f, 25.0f));
-	platform[3]->setPosition(glm::vec3(-6.0f, 8.0f, 30.0f));
-	platform[4]->setPosition(glm::vec3(-6.0f, 10.0f, 40.0f));
-	collectable[0]->setPosition(glm::vec3(-6.0f, 3.0f, 0.0f));
-	collectable[1]->setPosition(glm::vec3(-6.0f, 3.0f, 5.0f));
-	collectable[2]->setPosition(glm::vec3(-6.0f, 3.0f, 10.0f));
-	collectable[3]->setPosition(glm::vec3(-6.0f, 3.0f, 15.0f));
-	collectable[4]->setPosition(glm::vec3(-6.0f, 6.5f, 20.0f));
-	enemy[0]->setEnemyPosition(glm::vec3(-6.0f, 0.0f, 20.0f));
-	enemy[1]->setEnemyPosition(glm::vec3(-6.0f, 0.5f, 50.0f));
-	enemy[0]->setMinRange(glm::vec3(0.0f, 0.0f, 10.0f));
-	enemy[0]->setMaxRange(glm::vec3(0.0f, 0.0f, 30.0f));
-	enemy[1]->setMinRange(glm::vec3(0.0f, 0.0f, 40.0f));
-	enemy[1]->setMaxRange(glm::vec3(0.0f, 0.0f, 60.0f));
+	platform[0]->setPosition(glm::vec3(-3.0f, 2.0f, 15.0f));
+	platform[1]->setPosition(glm::vec3(-3.0f, 4.0f, 20.0f));
+	platform[2]->setPosition(glm::vec3(-3.0f, 6.0f, 25.0f));
+	platform[3]->setPosition(glm::vec3(-3.0f, 8.0f, 30.0f));
+	platform[4]->setPosition(glm::vec3(-3.0f, 10.0f, 40.0f));
+	collectable[0]->setPosition(glm::vec3(-3.0f, 3.0f, 0.0f));
+	collectable[1]->setPosition(glm::vec3(-3.0f, 3.0f, 5.0f));
+	collectable[2]->setPosition(glm::vec3(-3.0f, 3.0f, 10.0f));
+	collectable[3]->setPosition(glm::vec3(-3.0f, 3.0f, 15.0f));
+	collectable[4]->setPosition(glm::vec3(-3.0f, 6.5f, 20.0f));
+	enemy[0]->setEnemyPosition(glm::vec3(-3.0f, 0.0f, 20.0f));
+	enemy[1]->setEnemyPosition(glm::vec3(-3.0f, 0.5f, 50.0f));
+	enemy[0]->setMinRange(glm::vec3(-3.0f, 0.0f, 10.0f));
+	enemy[0]->setMaxRange(glm::vec3(-3.0f, 0.0f, 30.0f));
+	enemy[1]->setMinRange(glm::vec3(-3.0f, 0.0f, 40.0f));
+	enemy[1]->setMaxRange(glm::vec3(-3.0f, 0.0f, 60.0f));
 	player->init();
 	bush->init();
 	tree->init();
@@ -64,28 +64,38 @@ void Level_2::update(AbstractLevel** level)
 		{
 			if (player->getPosition().y >= platform[i]->getPosition().y)
 			{
-				player->noPlatformCollision = false;
+				player->setPlatformCollision(false);
 				player->setJump(false);
 				Move::resetV();
 
 				glm::vec3 position = player->getPosition();
 				position.y = platform[i]->getPosition().y + 1.3f;
 
-				if (!player->jumping)
+				if (!player->getJumping())
 					player->setPlayerPosition(position);
 			}
 			else
-				player->noPlatformCollision = true;
+				player->setPlatformCollision(true);
 		}
 
 	}
 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < MAX_ENEMIES; i++)
 	{
+		//CHECKING COLLISION FOR ENEMIES
 		if (Collision::collisionDetection(player, enemy[i]))
 		{
-			player->takeDamage();
+			if (player->getAllowDamage())
+			{
+				player->setEnemyCollision(false);
+				player->setAllowDamage(false);
+				player->takeDamage();
+			}
 		}
+		else
+			player->setEnemyCollision(true);
+
+		enemy[i]->update();
 	}
 
 	for (int i = 0; i < 2; i++)

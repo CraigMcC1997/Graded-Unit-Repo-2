@@ -10,7 +10,7 @@ class EndPoint : public Entity
 {
 private:
 	glm::vec3 position;
-	glm::vec3 scale = glm::vec3(1.0f, 3.0f, 1.0f);
+	glm::vec3 scale = glm::vec3(1.0f, 6.0f, 1.0f);
 	int flagType;
 
 public:

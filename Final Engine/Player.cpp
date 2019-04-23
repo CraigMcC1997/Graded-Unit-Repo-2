@@ -24,7 +24,7 @@ void Player::init()
 	//shader
 	shaderProgram = rt3d::initShaders("../Resources/Shaders/phong.vert", "../Resources/Shaders/phong.frag");
 	rt3d::setLight(shaderProgram, light0);
-	rt3d::setMaterial(shaderProgram, material1);
+	rt3d::setMaterial(shaderProgram, material0);
 
 	//model loading
 	textures[1] = loadTexture::loadTextures("../Resources/Textures/hobgoblin2.bmp");
@@ -98,6 +98,46 @@ void Player::addCollectable()
 glm::vec3 Player::getCollisionBox()
 {
 	return collisionBox;
+}
+
+bool Player::getPlatformCollision()
+{
+	return noPlatformCollision;
+}
+
+bool Player::getEnemyCollision()
+{
+	return noEnemyCollision;
+}
+
+bool Player::getProjectileCollision()
+{
+	return noProjectileCollision;
+}
+
+bool Player::getJumping()
+{
+	return jumping;
+}
+
+void Player::setPlatformCollision(bool newValue)
+{
+	noPlatformCollision = newValue;
+}
+
+void Player::setEnemyCollision(bool newValue)
+{
+	noEnemyCollision = newValue;
+}
+
+void Player::setProjectileCollision(bool newValue)
+{
+	noProjectileCollision = newValue;
+}
+
+void Player::setJumping(bool newValue)
+{
+	jumping = newValue;
 }
 
 void Player::update()
