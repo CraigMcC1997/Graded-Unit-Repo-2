@@ -17,3 +17,15 @@ Linker -> general -> Input:
 SDL2.lib;SDL2main.lib;glew32d.lib;opengl32.lib;SDL2_image.lib;SDL2_ttf.lib;bass.lib;%(AdditionalDependencies)
 
 Run as x86 platform solution
+
+
+
+
+GAMEPLAY:
+Keyboard:
+A & D = move player left and right
+SPACE = Jump
+
+Game pad:
+D-Pad - Left & right = move player left and right
+A = Jump
