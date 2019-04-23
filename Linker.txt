@@ -1,8 +1,0 @@
-C/C++, General:
-$(SolutionDir)/Dev/SOIL2/include;$(SolutionDir)/Dev/assimp/include;..\Dev\SDL2_ttf-2.0.14;..\Dev\SDL2-2.0.8\include;..\Dev\glew-2.0.0\bin\Release\Win32;..\Dev\glm;..\Dev\SDL2_image-2.0.3;..\Dev\glew-2.1.0\include;%(AdditionalIncludeDirectories)
-
-Linker, General
-$(SolutionDir)/Dev/assimp/lib;$(SolutionDir)/Dev/SOIL2/lib;..\Dev\SDL2_ttf-2.0.14\VisualC\Win32\Debug;..\Dev\SDL2-2.0.8\VisualC\Win32\Debug;..\Dev\glew-2.1.0\lib\Debug\Win32;..\Dev\SDL2_image-2.0.3\VisualC\Win32\Debug;..\Dev\glew-2.1.0\bin\Debug\Win32;%(AdditionalLibraryDirectories)
-
-Linker, Input
-glew32d.lib;opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_ttf.lib;bass.lib;SDL2_image.lib;assimp-vc140-mt.lib;soil2-debug.lib;%(AdditionalDependencies)
