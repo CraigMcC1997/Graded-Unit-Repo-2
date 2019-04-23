@@ -82,7 +82,7 @@ void Level_2_Display::draw(SDL_Window* window)
 	glBindTexture(GL_TEXTURE_2D, textures[0]);
 	mvStack.push(mvStack.top());
 	mvStack.top() = glm::translate(mvStack.top(), glm::vec3(-10.0f, -0.1f, -10.0f));
-	mvStack.top() = glm::scale(mvStack.top(), glm::vec3(50.0f, 0.1f, 100.0f));
+	mvStack.top() = glm::scale(mvStack.top(), glm::vec3(50.0f, 0.1f, 300.0f));
 	rt3d::setUniformMatrix4fv(shaderProgram, "modelview", glm::value_ptr(mvStack.top()));
 	rt3d::setMaterial(shaderProgram, material0);
 	rt3d::drawIndexedMesh(meshObjects[0], meshIndexCount, GL_TRIANGLES);
