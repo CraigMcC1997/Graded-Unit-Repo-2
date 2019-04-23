@@ -1,3 +1,9 @@
+//	#########################################
+//	An entity which is triggered by the
+//	projectile enemy and thrown towards the
+//	player.
+//	#########################################
+
 #pragma once
 #include "Entity.h"
 

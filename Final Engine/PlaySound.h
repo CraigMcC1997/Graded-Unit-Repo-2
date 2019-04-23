@@ -1,3 +1,8 @@
+//	#########################################
+//	A class used for loading in sound files
+//	and playing sound effects
+//	#########################################
+
 #ifndef SOUND
 #define SOUND
 #ifndef NOMINMAX

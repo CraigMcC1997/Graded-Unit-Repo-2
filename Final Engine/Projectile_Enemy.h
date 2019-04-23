@@ -1,6 +1,12 @@
+//	#########################################
+//	An enemy type entity which throws a
+//	projectile towards the player character.
+//	#########################################
+
 #pragma once
 #include "Entity.h"
 #include "Projectile.h"
+#include "PlaySound.h"
 
 class Projectile_Enemy : public Entity
 {
@@ -8,7 +14,7 @@ private:
 	Projectile* projectile = new Projectile();
 	GLfloat rotate = 0.0f;
 	glm::vec3 position;
-	
+	HSAMPLE *samples = NULL;
 	glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f);
 	glm::vec3 minRange;
 	glm::vec3 maxRange;

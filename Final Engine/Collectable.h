@@ -1,6 +1,13 @@
 #pragma once
 #include "Entity.h"
 
+//	#########################################
+//	An entity which the player hunts for
+//	within each level.
+//	Basic object which the player can
+//	interact with
+//	#########################################
+
 class Collectable : public Entity
 {
 private:

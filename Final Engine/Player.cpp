@@ -19,13 +19,12 @@ void Player::init()
 	samples = new HSAMPLE[5];	//array of sound  files
 	samples[0] = Sound::loadSample("../Resources/SoundFiles/jump.wav", BASS_SAMPLE_OVER_POS);	//adding sound files to the array to be played later in code
 	samples[1] = Sound::loadSample("../Resources/SoundFiles/Damage.wav", BASS_SAMPLE_OVER_POS);
+	samples[2] = Sound::loadSample("../Resources/SoundFiles/death.wav", BASS_SAMPLE_OVER_POS);
 
 	//shader
 	shaderProgram = rt3d::initShaders("../Resources/Shaders/phong.vert", "../Resources/Shaders/phong.frag");
 	rt3d::setLight(shaderProgram, light0);
 	rt3d::setMaterial(shaderProgram, material1);
-
-	textureProgram = rt3d::initShaders("../Resources/Shaders/textured.vert", "../Resources/Shaders/textured.frag");
 
 	//model loading
 	textures[1] = loadTexture::loadTextures("../Resources/Textures/hobgoblin2.bmp");
@@ -71,7 +70,6 @@ void Player::takeDamage()
 	//reset lives count
 	playerLives--;
 	Sound::playSample(samples[1]);
-	cout << playerLives << endl;
 }
 
 void Player::setJump(bool setJump)
@@ -175,16 +173,9 @@ void Player::update()
 		allowJumpSound = true;
 	}
 
-	if (keys[SDL_SCANCODE_L])
-		{
-		playerLives -= 1;
-		cout << "Player Lives: " << playerLives << endl;
-		}
-
 	if (jumping)
 	{
 		setPlayerPosition(glm::vec3(position.x, Move::jump(position).y, position.z));
-		cout << "JUMPING" << endl;
 	}
 
 	if (position.y <= 2.5f)
@@ -199,6 +190,7 @@ void Player::update()
 
 	if (playerLives <= 0)
 	{
+		Sound::playSample(samples[2]);
 		playerLives = 5;
 		
 		//kill player
@@ -232,10 +224,11 @@ void Player::draw(SDL_Window* window)
 	tmpModel.Animate(currentAnimation, 0.1);
 	rt3d::updateMesh(meshObjects[1], RT3D_VERTEX, tmpModel.getAnimVerts(), tmpModel.getVertDataSize());
 
+	glUseProgram(shaderProgram);
+
 	glCullFace(GL_FRONT);
 	glBindTexture(GL_TEXTURE_2D, textures[1]);
-	rt3d::materialStruct tmpMaterial = material1;
-	rt3d::setMaterial(shaderProgram, tmpMaterial);
+	rt3d::setMaterial(shaderProgram, material0);
 	mvStack.push(mvStack.top());
 	mvStack.top() = glm::translate(mvStack.top(), glm::vec3(position));
 	mvStack.top() = glm::rotate(mvStack.top(), (float(90.0f * DEG_TO_RADIAN)), glm::vec3(-1.0f, 0.0f, 0.0f));
@@ -245,62 +238,6 @@ void Player::draw(SDL_Window* window)
 	rt3d::drawMesh(meshObjects[1], md2VertCount, GL_TRIANGLES);
 	mvStack.pop();
 	glCullFace(GL_BACK);
-
-
-	////////////////////////////////////////////////////////////////////
-	//	This renders a HUD labels
-	////////////////////////////////////////////////////////////////////
-
-	//glUseProgram(textureProgram);
-	//glDisable(GL_DEPTH_TEST);	//Disable depth test for HUD label
-	//
-	//labels[0] = loadTexture::textToTexture("Level: 1" /*+ LevelNum*/, labels[0], { 0, 0, 0 }, font);
-	//glBindTexture(GL_TEXTURE_2D, labels[0]);
-	//mvStack.push(glm::mat4(1.0));
-	//mvStack.top() = glm::translate(mvStack.top(), glm::vec3(-0.8f, 0.9f, 0.0f));
-	//mvStack.top() = glm::scale(mvStack.top(), glm::vec3(0.1f, 0.1f, 0.1f));
-	//rt3d::setUniformMatrix4fv(textureProgram, "projection", glm::value_ptr(glm::mat4(1.0)));
-	//rt3d::setUniformMatrix4fv(textureProgram, "modelview", glm::value_ptr(mvStack.top()));
-	//rt3d::drawIndexedMesh(meshObjects[1], meshIndexCount[1], GL_TRIANGLES);
-	//mvStack.pop();
-
-	//const char* health;
-	//health = "HEALTH: 5";
-	//health += playerLives;
-
-	//labels[1] = loadTexture::textToTexture(health, labels[1], { 0, 0, 0 }, font);
-	//glBindTexture(GL_TEXTURE_2D, labels[1]);
-	//mvStack.push(glm::mat4(1.0));
-	//mvStack.top() = glm::translate(mvStack.top(), glm::vec3(-0.8f, 0.75f, 0.0f));
-	//mvStack.top() = glm::scale(mvStack.top(), glm::vec3(0.1, 0.1, 0.1f));
-	//rt3d::setUniformMatrix4fv(textureProgram, "projection", glm::value_ptr(glm::mat4(1.0)));
-	//rt3d::setUniformMatrix4fv(textureProgram, "modelview", glm::value_ptr(mvStack.top()));
-	//rt3d::drawIndexedMesh(meshObjects[1], meshIndexCount[1], GL_TRIANGLES);
-	//mvStack.pop();
-
-	//
-	//labels[2] = loadTexture::textToTexture("COLLECTABLES: 0" /*+ numCollectables*/, labels[2], { 0, 0, 0 }, font);
-	//glBindTexture(GL_TEXTURE_2D, labels[2]);
-	//mvStack.push(glm::mat4(1.0));
-	//mvStack.top() = glm::translate(mvStack.top(), glm::vec3(-0.8f, 0.6f, 0.0f));
-	//mvStack.top() = glm::scale(mvStack.top(), glm::vec3(0.1, 0.1, 0.1f));
-	//rt3d::setUniformMatrix4fv(textureProgram, "projection", glm::value_ptr(glm::mat4(1.0)));
-	//rt3d::setUniformMatrix4fv(textureProgram, "modelview", glm::value_ptr(mvStack.top()));
-	//rt3d::drawIndexedMesh(meshObjects[1], meshIndexCount[1], GL_TRIANGLES);
-	//mvStack.pop();
-
-	//labels[3] = loadTexture::textToTexture("HEALTH: 5" /*+ playerLives*/, labels[3], { 0, 0, 0 }, font);
-	//glBindTexture(GL_TEXTURE_2D, labels[1]);
-	//mvStack.push(glm::mat4(1.0));
-	//mvStack.top() = glm::translate(mvStack.top(), glm::vec3(-0.8f, 0.5f, 0.0f));
-	//mvStack.top() = glm::scale(mvStack.top(), glm::vec3(0.1, 0.1, 0.1f));
-	//rt3d::setUniformMatrix4fv(textureProgram, "projection", glm::value_ptr(glm::mat4(1.0)));
-	//rt3d::setUniformMatrix4fv(textureProgram, "modelview", glm::value_ptr(mvStack.top()));
-	////rt3d::drawIndexedMesh(meshObjects[1], meshIndexCount[1], GL_TRIANGLES);
-	//mvStack.pop();
 	
-	glEnable(GL_DEPTH_TEST);	//Re-enable depth test after HUD label 
 	mvStack.pop();	 // initial matrix
-	glCullFace(GL_BACK);
-	glDepthMask(GL_TRUE);
 }

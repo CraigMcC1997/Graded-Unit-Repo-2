@@ -1,3 +1,10 @@
+//	#########################################
+//	A base class for all objects, information
+//	which could be shared amongst all
+//	sub classes
+//	#########################################
+
+
 #pragma once
 #include <SDL.h>
 #include "rt3d.h"

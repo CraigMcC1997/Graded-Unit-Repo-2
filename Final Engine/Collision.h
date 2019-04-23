@@ -1,3 +1,9 @@
+//	#########################################
+//	A class for holding all collisions.
+//	Collisions are tested here and the
+//	value is returned to the current level
+//	#########################################
+
 #pragma once
 #ifndef COLLISION
 #define COLLISION

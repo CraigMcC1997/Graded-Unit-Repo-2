@@ -1,6 +1,12 @@
 #pragma once
 #include "Entity.h"
 
+//	#########################################
+//	Basic enemy
+//	Does damage on collision with player
+//	Moves between predefined flags
+//	#########################################
+
 class Basic_Enemy : public Entity
 {
 private:

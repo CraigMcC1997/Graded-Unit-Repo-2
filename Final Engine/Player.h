@@ -1,3 +1,8 @@
+//	#########################################
+//	A class for holding all of the players
+//	information, variables & functions
+//	#########################################
+
 #pragma once
 #include "Entity.h"
 #include "PlaySound.h"

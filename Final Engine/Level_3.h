@@ -7,6 +7,8 @@
 #include "Basic_Enemy.h"
 #include "Collectable.h"
 #include "EndPoint.h"
+#include "Tree.h"
+#include "Bush.h"
 
 class Level_3 : public AbstractLevel
 {
@@ -17,6 +19,8 @@ protected:
 	Basic_Enemy* enemy[3];
 	EndPoint* endPoint;
 	enum { MAX_PLATFORMS = 5 };
+	Bush* bush = new Bush();
+	Tree* tree = new Tree();
 public:
 	Level_3(Player* player) : player(player)
 	{

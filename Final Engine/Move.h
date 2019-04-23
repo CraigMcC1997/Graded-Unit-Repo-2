@@ -1,3 +1,11 @@
+//	#########################################
+//	A class for moving entities within the
+//	game.
+//	calling functions from this class
+//	will move objects in the desired 
+//	direction
+//	#########################################
+
 #pragma once
 
 #ifndef MOVE

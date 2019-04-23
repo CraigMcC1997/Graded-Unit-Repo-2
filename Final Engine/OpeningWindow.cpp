@@ -1,11 +1,7 @@
 #include "OpeningWindow.h"
 
 void OpeningWindow::init()
-{
-	cout << "1. Play" << endl;
-	cout << "2. Options" << endl;
-	cout << "3. Quit" << endl;
-		
+{		
 	//shader
 	shaderProgram = rt3d::initShaders("../Resources/Shaders/phong.vert", "../Resources/Shaders/phong.frag");
 	rt3d::setLight(shaderProgram, light0);
@@ -85,7 +81,6 @@ void OpeningWindow::GetDesktopResolution(int& horizontal, int& vertical)
 void OpeningWindow::play()
 {
 	//play game
-	cout << "play game" << endl;
 	running = true;
 	runOpening = false;
 }
@@ -106,7 +101,6 @@ void OpeningWindow::options()
 void OpeningWindow::quit()
 {
 	//close program
-	cout << "quit" << endl;
 	running = false; 
 	runOpening = false;
 }
@@ -146,8 +140,6 @@ void OpeningWindow::update()
 					currentPos++;
 			}
 
-			
-			cout << currentPos << endl;
 			pressed = true;
 		}
 	}
@@ -168,8 +160,6 @@ void OpeningWindow::update()
 				if (currentPos <= 2 && currentPos >= 1)
 					currentPos--;
 			}
-
-			cout << currentPos << endl;
 			pressed = true;
 		}
 	}
@@ -182,8 +172,6 @@ void OpeningWindow::update()
 			if (!optionsActive)
 			{
 				//Chose the highlighted options
-				cout << "option chosen: " << endl;
-
 				switch (currentPos)
 				{
 				case 1:
@@ -200,8 +188,6 @@ void OpeningWindow::update()
 			else
 			{
 				//Chose the highlighted options
-				cout << "option chosen: " << endl;
-
 				switch (currentPos)
 				{
 				case 1:
@@ -233,13 +219,6 @@ void OpeningWindow::update()
 		{
 			currentPos = 1;
 		}
-
-		if (currentPos == 1)
-			cout << "Current Option: Play" << endl;
-		if (currentPos == 2)
-			cout << "Current Option: Options" << endl;
-		if (currentPos == 3)
-			cout << "Current Option: Quit" << endl;
 	}
 	else
 	{
@@ -253,11 +232,6 @@ void OpeningWindow::update()
 		{
 			currentPos = 1;
 		}
-
-		if (currentPos == 1)
-			cout << "Current Option: Fullscreen" << endl;
-		if (currentPos == 2)
-			cout << "Current Option: Windowed" << endl;
 	}
 
 	box[4]->setPosition(glm::vec3(buttonPos[currentPos].x + 2.0f,

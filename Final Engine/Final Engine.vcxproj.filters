@@ -141,6 +141,12 @@
     <ClInclude Include="md2model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Bush.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp">
@@ -252,6 +258,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="md2model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bush.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

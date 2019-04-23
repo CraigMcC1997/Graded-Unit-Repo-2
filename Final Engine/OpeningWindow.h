@@ -1,3 +1,9 @@
+//	#########################################
+//	opening window which displays before
+//	the main game displays.
+//	Allows player to chose window size
+//	#########################################
+
 #pragma once
 
 #include "Box.h"

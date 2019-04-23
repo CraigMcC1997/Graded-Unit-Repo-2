@@ -37,7 +37,6 @@ protected:
 
 	stack<glm::mat4> mvStack;
 
-	// TEXTURE STUFF
 	GLuint textures[3];
 	GLuint skybox[5];
 	GLuint labels[5];

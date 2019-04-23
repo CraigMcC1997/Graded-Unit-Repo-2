@@ -2,6 +2,12 @@
 #ifndef CAMERA
 #define CAMERA
 
+//	#########################################
+//	Camera used to track the player and 
+//	allows the entire scene to be viewed as  
+//	the camera moves
+//	#########################################
+
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>

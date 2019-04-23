@@ -2,11 +2,13 @@
 #include "AbstractDisplay.h"
 #include "AbstractLevelUpdate.h"
 #include "Collision.h"
+#include "PlaySound.h"
 class AbstractLevel
 {
 protected:
 	AbstractDisplay* display;
 	AbstractLevelUpdate* lUpdate;
+	HSAMPLE *samples = new HSAMPLE[5];
 public:
 	virtual ~AbstractLevel()
 	{

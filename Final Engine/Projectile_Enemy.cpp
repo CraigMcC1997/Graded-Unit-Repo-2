@@ -9,6 +9,9 @@ void Projectile_Enemy::init()
 
 	projectile->init();
 
+	samples = new HSAMPLE[5];	//array of sound  files
+	samples[0] = Sound::loadSample("../Resources/SoundFiles/boom.wav", BASS_SAMPLE_OVER_POS);	//adding sound files to the array to be played later in code
+
 	//model loading
 	rt3d::loadObj("../Resources/3D_Objects/MODEL.obj", verts, norms, tex_coords, indices);
 	meshIndexCount[0] = indices.size();
@@ -57,9 +60,11 @@ glm::vec3 Projectile_Enemy::getScale()
 void Projectile_Enemy::shoot()
 {
 	//shoot projectile
+	
 
 	if (!bulletActive)
 	{
+		Sound::playSample(samples[0]);
 		bulletActive = true;
 		projectile->setPosition(glm::vec3(position.x, position.y + 3.0f, position.z));
 	}

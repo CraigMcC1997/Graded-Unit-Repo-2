@@ -1,3 +1,9 @@
+//	#########################################
+//	A class for drawing a window when called
+//	every time this class is called a new 
+//	window is created.
+//	#########################################
+
 #pragma once
 #include "AbstractWindow.h"
 class Window : public AbstractWindow

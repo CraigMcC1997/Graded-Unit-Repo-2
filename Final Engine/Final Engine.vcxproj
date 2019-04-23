@@ -25,6 +25,7 @@
     <ClInclude Include="AbstractWindow.h" />
     <ClInclude Include="bass.h" />
     <ClInclude Include="Box.h" />
+    <ClInclude Include="Bush.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collectable.h" />
     <ClInclude Include="Collision.h" />
@@ -60,10 +61,12 @@
     <ClInclude Include="Projectile_Enemy.h" />
     <ClInclude Include="rt3d.h" />
     <ClInclude Include="rt3dObjLoader.h" />
+    <ClInclude Include="Tree.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Box.cpp" />
+    <ClCompile Include="Bush.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collectable.cpp" />
     <ClCompile Include="Collision.cpp" />
@@ -99,6 +102,7 @@
     <ClCompile Include="Projectile_Enemy.cpp" />
     <ClCompile Include="rt3d.cpp" />
     <ClCompile Include="rt3dObjLoader.cpp" />
+    <ClCompile Include="Tree.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -187,9 +191,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Dev\SDL2-2.0.8\include;C:\Dev\SDL2_ttf-2.0.14;C:\Dev\SDL2_image-2.0.3;C:\Dev\glm;C:\Dev\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>C:\Dev\SDL2-2.0.8\VisualC\Win32\Debug;C:\Dev\SDL2_ttf-2.0.14\VisualC\Win32\Debug;C:\Dev\SDL2_image-2.0.3\VisualC\Win32\Debug;C:\Dev\glew-2.1.0\lib\Debug\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;glew32d.lib;opengl32.lib;SDL2_image.lib;SDL2_ttf.lib;bass.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

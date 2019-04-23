@@ -1,3 +1,9 @@
+//	#########################################
+//	A class used for loading textures
+//	Also can be used for loading text to
+//	textures
+//	#########################################
+
 #pragma once
 
 #ifndef LOADTEXTURE

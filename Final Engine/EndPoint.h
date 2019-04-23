@@ -1,6 +1,11 @@
 #pragma once
 #include "Entity.h"
 
+//	#########################################
+//	A flag used throughout the game for 
+//	different purposes
+//	#########################################
+
 class EndPoint : public Entity
 {
 private:

@@ -1,3 +1,10 @@
+//	#########################################
+//	The main aspect of our project.
+//	objects which the player can interact
+//	with to move around the level
+//	player can stand on top of platforms
+//	#########################################
+
 #pragma once
 #include "Entity.h"
 

@@ -8,11 +8,12 @@
 #include "Projectile_Enemy.h"
 #include "Collectable.h"
 #include "EndPoint.h"
+#include "Tree.h"
+#include "Bush.h"
 
 class Level_1 : public AbstractLevel
 {
 protected:
-	HSAMPLE *samples = NULL;
 
 	Player* player;
 	Projectile_Enemy* proj_Enemy;
@@ -27,7 +28,8 @@ protected:
 	Collectable* collectable[MAX_COLLECTABLES];
 	Basic_Enemy* enemy[MAX_ENEMIES];
 	EndPoint* checkPoint[MAX_CHECKPOINTS];
-
+	Bush* bush = new Bush();
+	Tree* tree = new Tree();
 public:
 	Level_1(Player* player) : player(player)
 	{

@@ -3,8 +3,10 @@
 void IntroductionLevel::init()
 {
 	//SOUND EFFECT
-	samples = new HSAMPLE[5];	//array of sound  files
 	samples[0] = Sound::loadSample("../Resources/SoundFiles/rainforest.wav", BASS_SAMPLE_LOOP);	//adding sound files to the array to be played later in code
+	samples[1] = Sound::loadSample("../Resources/SoundFiles/Collectable.wav", BASS_SAMPLE_OVER_POS);
+	samples[2] = Sound::loadSample("../Resources/SoundFiles/checkpoint.wav", BASS_SAMPLE_OVER_POS);
+	samples[3] = Sound::loadSample("../Resources/SoundFiles/endpoint.wav", BASS_SAMPLE_OVER_POS);
 
 	Sound::playSample(samples[0]);
 
@@ -28,6 +30,8 @@ void IntroductionLevel::init()
 	enemy->init();
 	projectile_Enemy->init();
 	player->init();
+	bush->init();
+	tree->init();
 
 	//SETTING POSITIONS FOR OBJECTS
 	endPoint->setPosition(glm::vec3(-3.0f, 3.0f, 230.0f));
@@ -75,6 +79,8 @@ void IntroductionLevel::update(AbstractLevel ** level)
 			player->addCollectable();
 			collectable[i]->setPosition(glm::vec3(collectable[i]->getPosition().x,
 				collectable[i]->getPosition().y, collectable[i]->getPosition().z + 1000.0f));
+
+			Sound::playSample(samples[1]);
 		}
 	}
 
@@ -107,6 +113,7 @@ void IntroductionLevel::update(AbstractLevel ** level)
 		if (Collision::collisionDetection(player, checkPoint[i]))
 		{
 			player->setCheckPoint(checkPoint[i]->getPosition());
+			Sound::playSample(samples[2]);
 		}
 	}
 
@@ -173,6 +180,9 @@ void IntroductionLevel::draw(SDL_Window * window)
 	{
 		collectable[i]->draw(window);
 	}
+
+	bush->draw(window);
+	tree->draw(window);
 
 	SDL_GL_SwapWindow(window);
 }

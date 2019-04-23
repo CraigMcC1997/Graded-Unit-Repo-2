@@ -1,6 +1,11 @@
 #pragma once
 #include "Entity.h"
 
+//	#########################################
+//	Used for drawing boxes in the opening
+//	window which will be used as buttons
+//	#########################################
+
 class Box : public Entity
 {
 private:
