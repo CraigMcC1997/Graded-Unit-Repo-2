@@ -193,6 +193,7 @@ void Player::update()
 		{
 			jumping = true;
 			Move::setGrav(-0.05);
+			
 
 			if (allowJumpSound)
 			{
@@ -209,6 +210,7 @@ void Player::update()
 	if (jumping)
 	{
 		setPlayerPosition(glm::vec3(position.x, Move::jump(position).y, position.z));
+		currentAnimation = 6;
 	}
 
 	if (position.y <= 2.5f)
